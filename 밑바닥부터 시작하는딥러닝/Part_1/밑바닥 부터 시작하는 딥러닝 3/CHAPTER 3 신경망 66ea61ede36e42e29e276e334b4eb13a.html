@@ -1,0 +1,698 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>CHAPTER 3 신경망</title><style>
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+.select-value-color-default { background-color: rgba(206,205,202,0.5); }
+.select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+.select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+.select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+.select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+.select-value-color-green { background-color: rgba(0,135,107,0.2); }
+.select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+.select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+.select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+.select-value-color-red { background-color: rgba(255,0,26,0.2); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="40a25c28-e967-4bb7-aba1-64b9ec4969a3" class="page sans"><header><img class="page-cover-image" src="https://www.notion.so/images/page-cover/gradients_2.png" style="object-position:center 19.999999999999996%"/><div class="page-header-icon page-header-icon-with-cover"><span class="icon">🔸</span></div><h1 class="page-title">CHAPTER 3 신경망</h1></header><div class="page-body"><ul id="5f9c48ba-cd5d-4aec-8fa8-d79aadcb315f" class="toggle"><li><details open=""><summary><strong>목차</strong></summary><nav id="a185921a-a9e1-4a62-93e2-cf2fb150542c" class="block-color-gray table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#ed342c61-9029-4c64-9a74-1fd2842a5844">1. 퍼셉트론에서 신경망으로 </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#598e2cfc-6404-4cc7-96bb-30cdfd86be51">1.1 신경망의 예</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#f35d512e-e8f6-44e2-a494-16be4efce10a">1.2 퍼셉트론 복습</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#4d36bb0b-423f-4cd4-a160-ff71d387d792">1.3 활성화 함수의 등장</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#7c1674a7-169c-47d8-9b61-9e48fdb2aa26">2. 활성화 함수 </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#e2837d09-9782-441c-be86-17258acdfbba">2.1 시그모이드 함수</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#eea2de5b-b4d9-4a72-ac3b-7bb724381cba">2.2 계단 함수 구현하기</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#9e2e1aee-ecdf-4c91-8a51-12f2bf5429fb">2.3 계단 함수의 그래프</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#528cf59c-747a-4d03-bc3b-cc1352fa71d7">2.4 시그모이드 함수 구현하기</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#e3309d88-bc90-44ad-9f10-08e2406b552d">2.5 시그모이드 함수와 계단 함수 비교</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#71f43599-4e3d-4fd4-acb5-fd7e529edf02">2.6 비선형 함수</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#caa3aa1a-b9db-4cc4-905b-ad643a7f5634">2.7 ReLU 함수</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#9f37518b-3d4f-440f-88a2-071d04defc99">3. 다차원 배열의 계산 </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#93283760-77d7-45dc-b8d4-a493348bb467">3.1 다차원 배열</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#b0640e13-206f-470c-b763-f83ad46cfbfd">3.2 행렬의 곱</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#afead73e-57c0-4dcc-9634-e894b084d78f">3.3 신경망에서의 행렬 곱</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#4672b1c6-be2b-427a-8599-a10709121917">4. 3층 신경망 구현하기 </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#7fa9b2e8-3861-475a-adf2-eb00f6db2b6b">4.1 표기법 설명</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#d1bacdcb-0bb8-4266-a833-609aa5e30d37">4.2 각 층의 신호 전달 구현하기</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#6467a1b7-202e-497b-9099-7a40ac4a3a37">4.3 구현 정리</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#0dd01e92-2fef-4159-aae6-21316d0efcc0">5. 출력층 설계하기 </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#e29b3e3d-911c-4cc3-a5cd-83039d4492bc">5.1 항등 함수와 소프트맥스 함수 구현하기</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#663bdb1e-43db-4103-962e-10955a2eba3a">5.2 소프트맥스 함수의 주의점</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#0dec6aa5-37e9-4ae5-b142-36ad5857e761">5.3 소프트맥스 함수의 특징</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#481814a8-490d-4a86-8402-925f63ee460f">5.4 출력층의 뉴런 수 정하기</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#5a78b1c6-6ae7-4750-8441-915684f472a6">6. 손글씨 숫자 인식</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#3d1c6976-9b09-47cf-805f-a8548300c27a">6.1 MNIST 데이터 셋</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#889cff48-1790-4936-81ac-0fea0f5c1d33">6.2 신경망의 추론 처리</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#3a4e305c-ffc5-44dd-9bc5-a513f67016d1">7. 정리 </a></div></nav></details></li></ul><h1 id="ed342c61-9029-4c64-9a74-1fd2842a5844" class="">1. 퍼셉트론에서 신경망으로 </h1><p id="63d5254c-a10c-4962-bee3-902f1a422349" class="">
+</p><ul id="141fac88-8265-4910-9ecd-739a21f09e25" class="toggle"><li><details open=""><summary>좋은 소식: 퍼셉트론으로 복잡한 함수도 표현할 수 있다는 것</summary></details></li></ul><ul id="c87d46b5-4f29-4a9e-bc57-0a142bffbd19" class="toggle"><li><details open=""><summary>나쁜 소식: 가중치를 설정하는 작업은 여전히 사람이 수동으로 한다는 것 </summary></details></li></ul><h2 id="598e2cfc-6404-4cc7-96bb-30cdfd86be51" class="">1.1 신경망의 예</h2><ul id="9cc8d7a6-1685-4fb6-9a55-b3f271dcdecc" class="bulleted-list"><li>신경망<ul id="1b5acc30-a93b-46a0-8ce0-7daa0d08bff3" class="toggle"><li><details open=""><summary>입력층</summary></details></li></ul><ul id="92695d02-0d10-4a41-9b02-226cea41fe81" class="toggle"><li><details open=""><summary>은닉층 : 뉴런이 사람 눈에 보이지 않는다.</summary></details></li></ul><ul id="b315037d-1e05-4638-9d96-28bca41dd79a" class="toggle"><li><details open=""><summary>출력층</summary></details></li></ul><figure id="66ea61ed-e36e-42e2-9e27-6e334b4eb13a" class="image"><a href="CHAPTER%203%20%E1%84%89%E1%85%B5%E1%86%AB%E1%84%80%E1%85%A7%E1%86%BC%E1%84%86%E1%85%A1%E1%86%BC%2066ea61ede36e42e29e276e334b4eb13a/Untitled.png"><img style="width:314px" src="CHAPTER%203%20%E1%84%89%E1%85%B5%E1%86%AB%E1%84%80%E1%85%A7%E1%86%BC%E1%84%86%E1%85%A1%E1%86%BC%2066ea61ede36e42e29e276e334b4eb13a/Untitled.png"/></a></figure></li></ul><h2 id="f35d512e-e8f6-44e2-a494-16be4efce10a" class="">1.2 퍼셉트론 복습</h2><ul id="19c8f0b5-bfbb-432f-8886-3e35feadb82e" class="bulleted-list"><li>b는 <strong>편향</strong>을 나타내는 매개변수 → 뉴런이 얼마나 쉽게 활성화 되는지 제어</li></ul><ul id="f881830a-64c0-4b5d-bcc7-517476dab2c9" class="bulleted-list"><li><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>w</mi><mn>1</mn></msub><mo separator="true">,</mo><msub><mi>w</mi><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">w_1, w_2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.02691em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.02691em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span><span>﻿</span></span>는 <strong>가중치</strong>를 나타내는 매개변수 → 각 신호의 영향력을 제어<figure id="daf89b91-1596-4126-9c1d-2ed20532934f" class="equation"><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css')</style><div class="equation-container"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mtext>식</mtext><mn>3.1</mn><mo stretchy="false">]</mo><mtext> </mtext><mi>y</mi><mo>=</mo><mrow><mn>0</mn><mo stretchy="false">(</mo><mi>b</mi><mo>+</mo><msub><mi>w</mi><mn>1</mn></msub><mo>∗</mo><msub><mi>x</mi><mn>1</mn></msub><mo>+</mo><msub><mi>w</mi><mn>2</mn></msub><mo>∗</mo><msub><mi>x</mi><mn>2</mn></msub><mo>≤</mo><mn>0</mn><mo stretchy="false">)</mo><mo separator="true">,</mo><mn>1</mn><mo stretchy="false">(</mo><mi>b</mi><mo>+</mo><msub><mi>w</mi><mn>1</mn></msub><mo>∗</mo><msub><mi>x</mi><mn>1</mn></msub><mo>+</mo><msub><mi>w</mi><mn>2</mn></msub><mo>∗</mo><msub><mi>x</mi><mn>2</mn></msub><mo>&gt;</mo><mn>0</mn><mo stretchy="false">)</mo></mrow></mrow><annotation encoding="application/x-tex">[식3.1] \space y = {0 (b+w_1*x_1 + w_2*x_2 \le 0),  
+               
+ 1(b+w_1*x_1+w_2*x_2&gt;0)} </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord hangul_fallback">식</span><span class="mord">3</span><span class="mord">.</span><span class="mord">1</span><span class="mclose">]</span><span class="mspace"> </span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord">0</span><span class="mopen">(</span><span class="mord mathdefault">b</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.02691em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.02691em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord">0</span><span class="mclose">)</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">1</span><span class="mopen">(</span><span class="mord mathdefault">b</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.02691em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.02691em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord">0</span><span class="mclose">)</span></span></span></span></span></span></div></figure></li></ul><figure id="6788fce8-ce3c-409f-8388-1170b014184a" class="image"><a href="CHAPTER%203%20%E1%84%89%E1%85%B5%E1%86%AB%E1%84%80%E1%85%A7%E1%86%BC%E1%84%86%E1%85%A1%E1%86%BC%2066ea61ede36e42e29e276e334b4eb13a/Untitled%201.png"><img style="width:336px" src="CHAPTER%203%20%E1%84%89%E1%85%B5%E1%86%AB%E1%84%80%E1%85%A7%E1%86%BC%E1%84%86%E1%85%A1%E1%86%BC%2066ea61ede36e42e29e276e334b4eb13a/Untitled%201.png"/></a></figure><ul id="e4d10f8a-baeb-4512-9062-2c035685e5cd" class="bulleted-list"><li><strong>편향</strong>을 명시한 그림<p id="c9e591c7-3780-441c-9964-06aaf5c32b37" class="">
+</p></li></ul><figure id="f3327ca0-e1da-4be6-8b8c-6e4f17eab91c" class="image"><a href="CHAPTER%203%20%E1%84%89%E1%85%B5%E1%86%AB%E1%84%80%E1%85%A7%E1%86%BC%E1%84%86%E1%85%A1%E1%86%BC%2066ea61ede36e42e29e276e334b4eb13a/Untitled%202.png"><img style="width:288px" src="CHAPTER%203%20%E1%84%89%E1%85%B5%E1%86%AB%E1%84%80%E1%85%A7%E1%86%BC%E1%84%86%E1%85%A1%E1%86%BC%2066ea61ede36e42e29e276e334b4eb13a/Untitled%202.png"/></a></figure><h2 id="4d36bb0b-423f-4cd4-a160-ff71d387d792" class="">1.3 활성화 함수의 등장</h2><ul id="0ceaa762-52ac-47ed-a08c-1cce54b2dc4f" class="bulleted-list"><li>활성화함수 : 입력 신호의 총합이 활성화를 일으키는지를 정하는 역할</li></ul><p id="a1f89a87-96dd-466c-a2d0-fccd19947eb2" class="">
+</p><h1 id="7c1674a7-169c-47d8-9b61-9e48fdb2aa26" class="">2. 활성화 함수 </h1><ul id="991b5f94-9c11-4995-a800-f693d1562d82" class="bulleted-list"><li>계단함수: 임계값을 경계로 출력이 바뀌는 활성화 함수</li></ul><h2 id="e2837d09-9782-441c-be86-17258acdfbba" class="">2.1 시그모이드 함수</h2><ul id="e6f56378-43e8-474f-8528-5ad564997e2f" class="bulleted-list"><li>활성화 함수중 시그모이드 함수를 나타낸식</li></ul><p id="42b2a3f2-6cb4-4bc2-859e-87dc01266c09" class="">신경망에서 활성화함수로 시그모이드 함수를 이용하여 </p><p id="0917ea8d-3bf7-47e0-9d40-dbb049eb2cc9" class="">신호를 변환하고 변환된 신호를 다음 뉴런에 전달한다</p><figure id="2400b8b1-3bf9-4d20-9c54-06e18d9fd3dc" class="image"><a href="CHAPTER%203%20%E1%84%89%E1%85%B5%E1%86%AB%E1%84%80%E1%85%A7%E1%86%BC%E1%84%86%E1%85%A1%E1%86%BC%2066ea61ede36e42e29e276e334b4eb13a/Untitled%203.png"><img style="width:192px" src="CHAPTER%203%20%E1%84%89%E1%85%B5%E1%86%AB%E1%84%80%E1%85%A7%E1%86%BC%E1%84%86%E1%85%A1%E1%86%BC%2066ea61ede36e42e29e276e334b4eb13a/Untitled%203.png"/></a></figure><h2 id="eea2de5b-b4d9-4a72-ac3b-7bb724381cba" class="">2.2 계단 함수 구현하기</h2><ul id="4700af98-5b40-41b8-9a12-8f6b33eec30a" class="bulleted-list"><li>계단함수 구현</li></ul><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="31d21bda-121f-4318-8acf-67c974d313b0" class="code code-wrap"><code><span class="token keyword">def</span> <span class="token function">step_fuction</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">:</span>
+	<span class="token keyword">if</span> X <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">:</span>
+		<span class="token keyword">return</span> <span class="token number">1</span>
+	<span class="token keyword">else</span><span class="token punctuation">:</span>
+		<span class="token keyword">return</span> <span class="token number">0</span></code></pre><p id="82644d8f-caa6-4a4a-8a29-7f6ce43977fd" class="">
+</p><p id="6efd2aaa-1e59-48e2-9a07-bb9c24fc9c95" class="">❌단점❌</p><p id="772e3023-8ba1-4ee3-b746-ec7e3a949226" class="">인수 x는 실수(부동소수점)만 받아들인다. </p><p id="dc6831b6-4946-41b5-86be-8fc48d2ee661" class="">즉, step_function(3.0)은 되지만 넘파이 배열을 인수로 넣을 수 는 없습니다.</p><p id="3f7b324c-5e91-483e-8ff3-9474a0289178" class="">가령 step_function(np.array([1.0, 2.0])는 안됩니다.</p><p id="7eb85404-822d-4c9b-95aa-75e6ff254e28" class="">넘파이 배열도 지원하도록 수정하려면 다음과 같은 구현을 해야합니다.</p><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="2366cc32-4878-46e5-aeaa-4a61c5c44c05" class="code code-wrap"><code><span class="token keyword">def</span> <span class="token function">step_fuction</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">:</span>
+	y <span class="token operator">=</span> x <span class="token operator">></span> <span class="token number">0</span>
+	<span class="token keyword">return</span> y<span class="token punctuation">.</span>astype<span class="token punctuation">(</span>np<span class="token punctuation">.</span><span class="token builtin">int</span><span class="token punctuation">)</span></code></pre><p id="8c753499-83b0-4f82-98c2-9f9ee6e7df31" class="">
+</p><p id="f4701bc4-5e02-4ef1-9296-17298e46867c" class="">이는 넘파이의 편리한 트릭을 이용한 것입니다.</p><p id="3d6ca303-f041-4df4-bf6a-6dd8f978e8d0" class="">넘파이 배열에 부등호 연산을 수행하면 배열의 원소 각각에 부등호 연산을 수행한 bool 배열이 생성 됩니다.</p><p id="899555b6-997c-498d-ae58-c14c32bbd50f" class="">이 y는 bool배열입니다. 그래서 배열 y의 원소를 bool에서 int형으로 바꿔줍니다.</p><figure id="bc425240-88f7-4cf5-b9e8-a39ede3609b5" class="image"><a href="CHAPTER%203%20%E1%84%89%E1%85%B5%E1%86%AB%E1%84%80%E1%85%A7%E1%86%BC%E1%84%86%E1%85%A1%E1%86%BC%2066ea61ede36e42e29e276e334b4eb13a/Untitled%204.png"><img style="width:324px" src="CHAPTER%203%20%E1%84%89%E1%85%B5%E1%86%AB%E1%84%80%E1%85%A7%E1%86%BC%E1%84%86%E1%85%A1%E1%86%BC%2066ea61ede36e42e29e276e334b4eb13a/Untitled%204.png"/></a></figure><figure id="95f9f663-f319-417a-94c2-3989eb032fde" class="image"><a href="CHAPTER%203%20%E1%84%89%E1%85%B5%E1%86%AB%E1%84%80%E1%85%A7%E1%86%BC%E1%84%86%E1%85%A1%E1%86%BC%2066ea61ede36e42e29e276e334b4eb13a/Untitled%205.png"><img style="width:336px" src="CHAPTER%203%20%E1%84%89%E1%85%B5%E1%86%AB%E1%84%80%E1%85%A7%E1%86%BC%E1%84%86%E1%85%A1%E1%86%BC%2066ea61ede36e42e29e276e334b4eb13a/Untitled%205.png"/></a></figure><h2 id="9e2e1aee-ecdf-4c91-8a51-12f2bf5429fb" class="">2.3 계단 함수의 그래프</h2><ul id="bc6071aa-932c-4728-bacb-320d96d96a6c" class="bulleted-list"><li>계단함 수를 그래프로 그리기 위해 matplotlib 라이브러리를 사용합니다.</li></ul><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="6aa21ede-6f1b-4302-acc5-565d679c839f" class="code code-wrap"><code><span class="token keyword">import</span> numpy <span class="token keyword">as</span> np
+<span class="token keyword">import</span> matplotlib<span class="token punctuation">.</span>pylab <span class="token keyword">as</span> plt
+
+<span class="token keyword">def</span> <span class="token function">step_function</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">return</span> np<span class="token punctuation">.</span>array<span class="token punctuation">(</span>x <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">,</span> dtype <span class="token operator">=</span> np<span class="token punctuation">.</span><span class="token builtin">int</span><span class="token punctuation">)</span>
+
+x <span class="token operator">=</span> np<span class="token punctuation">.</span>arange<span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">5.0</span><span class="token punctuation">,</span> <span class="token number">5.0</span><span class="token punctuation">,</span> <span class="token number">0.1</span><span class="token punctuation">)</span>
+y <span class="token operator">=</span> step_function<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>plot<span class="token punctuation">(</span>x<span class="token punctuation">,</span>y<span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>ylim<span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">0.1</span><span class="token punctuation">,</span> <span class="token number">1.1</span><span class="token punctuation">)</span> <span class="token comment"># y축의 범위 지정</span>
+plt<span class="token punctuation">.</span>show<span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre><p id="9666eee8-fe3a-4739-b63a-9206d496919f" class="">np.arange(-5.0, 5.0, 0.1)은 -5.0에서 5.0 전까지 0.1 간격의 넘파이 배열을 생성 합니다</p><p id="d2772e94-370d-4598-a203-9c8962264545" class="">step_function()은 인수로 받은 넘파이 배열의 원소 각각을 인수로 계산함수 실행해 결과를 배열로 만들어 돌려 줍니다.</p><p id="b926d59e-d9df-43ec-af6d-7ecba0170b75" class="">이 x, y 배열을 그래프로 그리면 아래 그림 처럼 됩니다.</p><figure id="3abb58cf-4f82-4d14-8d02-c9c472caa3b1" class="image"><a href="CHAPTER%203%20%E1%84%89%E1%85%B5%E1%86%AB%E1%84%80%E1%85%A7%E1%86%BC%E1%84%86%E1%85%A1%E1%86%BC%2066ea61ede36e42e29e276e334b4eb13a/Untitled%206.png"><img style="width:432px" src="CHAPTER%203%20%E1%84%89%E1%85%B5%E1%86%AB%E1%84%80%E1%85%A7%E1%86%BC%E1%84%86%E1%85%A1%E1%86%BC%2066ea61ede36e42e29e276e334b4eb13a/Untitled%206.png"/></a></figure><h2 id="528cf59c-747a-4d03-bc3b-cc1352fa71d7" class="">2.4 시그모이드 함수 구현하기</h2><ul id="7b7b9dd1-2a61-47e4-8e19-58d4ff6d75e4" class="bulleted-list"><li>시그모이드 함수 구현</li></ul><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="5b1b0a3e-864e-447b-96d9-49d39730f18b" class="code code-wrap"><code><span class="token comment"># x 가 넘파이 배열이어도 올바른 결과가 나온다.</span>
+<span class="token keyword">def</span> <span class="token function">sigmoid</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">return</span> <span class="token number">1</span> <span class="token operator">/</span> <span class="token punctuation">(</span><span class="token number">1</span> <span class="token operator">+</span> np<span class="token punctuation">.</span>exp<span class="token punctuation">(</span><span class="token operator">-</span>x<span class="token punctuation">)</span></code></pre><p id="47cb621d-1865-43e9-9c5c-f7e834deacd1" class="">
+</p><ul id="cd1b7101-bcbb-43a7-876e-a1f1b5a60975" class="bulleted-list"><li>실험<figure id="11a1cd90-351e-46e1-8269-a97ad7d15c13" class="image"><a href="CHAPTER%203%20%E1%84%89%E1%85%B5%E1%86%AB%E1%84%80%E1%85%A7%E1%86%BC%E1%84%86%E1%85%A1%E1%86%BC%2066ea61ede36e42e29e276e334b4eb13a/Untitled%207.png"><img style="width:418px" src="CHAPTER%203%20%E1%84%89%E1%85%B5%E1%86%AB%E1%84%80%E1%85%A7%E1%86%BC%E1%84%86%E1%85%A1%E1%86%BC%2066ea61ede36e42e29e276e334b4eb13a/Untitled%207.png"/></a></figure></li></ul><p id="fd29e734-4420-4d15-b28e-401d98a25175" class="">넘파이 배열도 처리해주는 이유는 넘바이의 <strong>브로드 캐스트</strong>에 있습니다.</p><p id="3f52865d-fa70-48ce-9176-69d4d3a07508" class="">
+</p><p id="b6cd092d-d897-4d73-9da3-33c98b971cd4" class="">🧰 <strong>브로드캐스트 기능:</strong> 넘파이 배열과 스칼라 값의 연산을 넘파이 배열의 원소 각각과 스칼라값의 연산으로 바꿔 수행.</p><p id="66ccdbf9-63d4-4713-9e74-2c83f5e54d22" class="">
+</p><ul id="f699eb88-c5bf-4f9e-b033-735d40afb509" class="bulleted-list"><li>시그모이드 함수 그래프 구현</li></ul><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="9284eaa9-9266-4348-9654-69509fea6678" class="code code-wrap"><code>x <span class="token operator">=</span> np<span class="token punctuation">.</span>arange<span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">5.0</span><span class="token punctuation">,</span> <span class="token number">5.0</span><span class="token punctuation">,</span> <span class="token number">0.1</span><span class="token punctuation">)</span>
+y <span class="token operator">=</span> sigmoid<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>plot<span class="token punctuation">(</span>x<span class="token punctuation">,</span>y<span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>ylim<span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">0.1</span><span class="token punctuation">,</span> <span class="token number">1.1</span><span class="token punctuation">)</span> <span class="token comment"># y축의 범위 지정</span>
+plt<span class="token punctuation">.</span>show<span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre><figure id="e1d349da-1f2c-4a28-89a9-9781ed86727b" class="image"><a href="CHAPTER%203%20%E1%84%89%E1%85%B5%E1%86%AB%E1%84%80%E1%85%A7%E1%86%BC%E1%84%86%E1%85%A1%E1%86%BC%2066ea61ede36e42e29e276e334b4eb13a/Untitled%208.png"><img style="width:418px" src="CHAPTER%203%20%E1%84%89%E1%85%B5%E1%86%AB%E1%84%80%E1%85%A7%E1%86%BC%E1%84%86%E1%85%A1%E1%86%BC%2066ea61ede36e42e29e276e334b4eb13a/Untitled%208.png"/></a></figure><p id="a7679b1a-8d70-4798-bcc0-29ed452c1dff" class="">
+</p><p id="328d4d64-6541-463c-b2a8-0409b1727768" class="">
+</p><h2 id="e3309d88-bc90-44ad-9f10-08e2406b552d" class="">2.5 시그모이드 함수와 계단 함수 비교</h2><p id="3fd1bea6-4767-41b6-9b81-76c7fa901224" class="">두함수를 함께 그리면 아래와 같습니다.</p><p id="d4aa1a2f-1ba7-4d1d-90f5-a52673958b75" class="">
+</p><figure id="8e6d843c-96ba-4f2a-900d-ec257d805332" class="image"><a href="CHAPTER%203%20%E1%84%89%E1%85%B5%E1%86%AB%E1%84%80%E1%85%A7%E1%86%BC%E1%84%86%E1%85%A1%E1%86%BC%2066ea61ede36e42e29e276e334b4eb13a/Untitled%209.png"><img style="width:529px" src="CHAPTER%203%20%E1%84%89%E1%85%B5%E1%86%AB%E1%84%80%E1%85%A7%E1%86%BC%E1%84%86%E1%85%A1%E1%86%BC%2066ea61ede36e42e29e276e334b4eb13a/Untitled%209.png"/></a></figure><p id="974b902f-528b-435a-ab51-180290897c70" class="">차이점이라면 &#x27;매끄러움&#x27;의 차이가 있습니다 시그모이드함수는 부드러운 곡선이며 입력에 따라 출력이 연속적으로 변화합니다. 매끄러움은 신경망학습에서 중요한 역할을 하게 됩니다.</p><p id="1d430d07-5b53-4a04-9b96-69aca2eb7da5" class="">
+</p><p id="2d0d9da7-cc8f-4171-b0ba-69d7ba3d060f" class="">공통점은 입력이 커지면 출력이 1에 커지고 입력이 중요하지 않으면 작은 값을 출력합니다.</p><h2 id="71f43599-4e3d-4fd4-acb5-fd7e529edf02" class="">2.6 비선형 함수</h2><p id="96f5b2b2-c203-4cb2-8e53-c13a20a52f7e" class="">시그모이드 함수와 계단함수는 비선형 함수로 분류됩니다.</p><p id="f0b336c7-5574-43ba-b866-7808f714d008" class="">
+</p><p id="f2ff2558-f99c-4813-b141-ebb8077f9138" class="">신경망에서는 활성화함수로 비선형 함수를 사용해야합니다.</p><p id="82402447-4966-448e-a85a-2e9c05b73460" class="">선형 함수의 문제는 층을 아무리 깊게 해도 &#x27;은닉층이 없는 네트워크&#x27;로도 똑같은 기능을 할 수 있기 때문입니다. </p><p id="cce6b876-fd24-4089-b5a2-e7e5be292563" class="">
+</p><p id="3dbe1331-f0f7-4877-8e96-7c8cf661a2e7" class="">구체적인 예로 H(x) = cx 를 활성화함수로 사용하면 3층 네트워크 식은 Y(x) = H(H(H(x)))가 됩니다. </p><p id="55c7cdd0-a0ef-47ff-905b-a4898a76349f" class="">이 계산은 y(x) = c*c*c*x 처럼 곱셈을 세 번 수행하지만 실은 Y(x) = ax와 같은 식입니다 이 예처럼 선형 함수를 이용해서는 여러 층으로 구성하는 이점을 살릴 수 없습니다. 그래서 층을 쌓는 혜택을 얻고 싶다면 활성화 함수로는 반드시 비선형 함수를 사용해야 합니다.</p><h2 id="caa3aa1a-b9db-4cc4-905b-ad643a7f5634" class="">2.7 ReLU 함수</h2><p id="7c68f983-8363-4c72-89b2-d9c5a4550b69" class="">ReLU는 입력이 0을 넘으면 그 입력을 그대로 출력하고, 0 이하이면 0을 출력하는 함수입니다.</p><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="66c2f9b9-a93f-470e-b81a-fcab2118441b" class="code code-wrap"><code><span class="token keyword">def</span> <span class="token function">relu</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">return</span> np<span class="token punctuation">.</span>maximum<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> x<span class="token punctuation">)</span>
+
+x <span class="token operator">=</span> np<span class="token punctuation">.</span>arange<span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">5.0</span><span class="token punctuation">,</span> <span class="token number">5.0</span><span class="token punctuation">,</span> <span class="token number">0.1</span><span class="token punctuation">)</span>
+y <span class="token operator">=</span> relu<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>plot<span class="token punctuation">(</span>x<span class="token punctuation">,</span>y<span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>show<span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre><ul id="480d9a81-d806-426b-b116-0fcddc34fd55" class="bulleted-list"><li>Relu함수의 그래프<figure id="3ce07cef-77ec-4107-9532-47bab97eefb5" class="image"><a href="CHAPTER%203%20%E1%84%89%E1%85%B5%E1%86%AB%E1%84%80%E1%85%A7%E1%86%BC%E1%84%86%E1%85%A1%E1%86%BC%2066ea61ede36e42e29e276e334b4eb13a/Untitled%2010.png"><img style="width:404px" src="CHAPTER%203%20%E1%84%89%E1%85%B5%E1%86%AB%E1%84%80%E1%85%A7%E1%86%BC%E1%84%86%E1%85%A1%E1%86%BC%2066ea61ede36e42e29e276e334b4eb13a/Untitled%2010.png"/></a></figure></li></ul><p id="42f5c7ef-696f-4e18-991d-c9819be1deae" class="">
+</p><h1 id="9f37518b-3d4f-440f-88a2-071d04defc99" class="">3. 다차원 배열의 계산 </h1><p id="e28ceb17-57df-46ab-a6ad-5d320e0d8957" class="">
+</p><p id="22454004-a19b-452b-828e-b5c6b2e8c395" class="">넘파이의 다차원 배열을 이용한 계산법을 숙달하면 신경망을 효율적으로 구현 가능합니다.</p><h2 id="93283760-77d7-45dc-b8d4-a493348bb467" class="">3.1 다차원 배열</h2><ul id="2e450a6d-4f59-4973-a4eb-810369f37ad6" class="bulleted-list"><li>1차원 배열<figure id="ca9e27b0-db84-41a1-bffd-14586890256e" class="image"><a href="CHAPTER%203%20%E1%84%89%E1%85%B5%E1%86%AB%E1%84%80%E1%85%A7%E1%86%BC%E1%84%86%E1%85%A1%E1%86%BC%2066ea61ede36e42e29e276e334b4eb13a/Untitled%2011.png"><img style="width:306px" src="CHAPTER%203%20%E1%84%89%E1%85%B5%E1%86%AB%E1%84%80%E1%85%A7%E1%86%BC%E1%84%86%E1%85%A1%E1%86%BC%2066ea61ede36e42e29e276e334b4eb13a/Untitled%2011.png"/></a></figure></li></ul><p id="1df2089c-b5c7-49b1-bca2-fc19f2a7f46e" class="">이와 같이 배열의 차원 수는 np.ndim()함수로 확인할 수 있습니다.</p><p id="69055537-b7d6-4d95-b8a4-2d92d1277935" class="">배열의 형상은 인스턴스 변수인 shape으로 알 수 있습니다.</p><p id="24964869-1592-4ac5-8aaf-8d58fe5b894b" class="">이 예에서 A는 1차원 배열이고 원소 4개로 구성되어 있음을 확인 할 수 있습니다.</p><p id="45a008b1-854d-4b52-a917-56e466103521" class="">
+</p><p id="1e51732e-ff7f-4597-bb6d-60665f082e00" class="">❌주의❌</p><p id="7eeb39f5-8cb7-45d9-8d4c-3d91621262e3" class="">A.shaped은 튜플을 반환 합니다.</p><p id="7dce909d-510a-4c0f-96d3-c6700a1690f2" class="">
+</p><ul id="569f0ee3-9e10-4224-9616-1568e605bb8f" class="bulleted-list"><li>2차원 배열<figure id="f9e0bc23-2a0d-4510-922e-fc86affb86e8" class="image"><a href="CHAPTER%203%20%E1%84%89%E1%85%B5%E1%86%AB%E1%84%80%E1%85%A7%E1%86%BC%E1%84%86%E1%85%A1%E1%86%BC%2066ea61ede36e42e29e276e334b4eb13a/Untitled%2012.png"><img style="width:391px" src="CHAPTER%203%20%E1%84%89%E1%85%B5%E1%86%AB%E1%84%80%E1%85%A7%E1%86%BC%E1%84%86%E1%85%A1%E1%86%BC%2066ea61ede36e42e29e276e334b4eb13a/Untitled%2012.png"/></a></figure></li></ul><p id="7d78db42-a6fe-4b08-83ce-42e31112e831" class="">2차원 배열은 행렬이라고 부르고 가로방향을 행(row) 세로방향을 열(column)이라고 합니다.</p><p id="bed5ef1f-b83c-4592-88b9-b1e498b719be" class="">
+</p><h2 id="b0640e13-206f-470c-b763-f83ad46cfbfd" class="">3.2 행렬의 곱</h2><p id="a505493f-cd1e-4dbf-b817-8c801a1012d9" class="">행렬의 곱을 구하는 방법을 알아보겠습니다.</p><p id="f22627de-6ddb-40f2-ad8e-38aa52f974bc" class="">행렬의 곱은 왼쪽 행렬의 행(가로)가 오른쪽 행렬의 열(세로)을 원소별로 곱하고 그 값들을 더해서 계산합니다. </p><p id="728abe98-6f1d-40fd-9201-5b590e3aaf0c" class="">그리고 그 계산 결과가 새로운 다차원 배열의 원소가 됩니다. 예를 들어 A의 1행과 B의 1열을 곱한 값은 결과 행렬의 1행 1번째 원소가 되고 A의 2행과 B의 1열을 곱한 결과는 2행 1번째 원소가 됩니다. </p><p id="92a52618-791d-41a0-9f09-1187aa72471a" class="">이 계산을 파이썬으로 구현하면 다음과 같습니다.</p><figure id="a918fa1e-9283-4b96-b8bc-04ed1e93e185" class="image"><a href="CHAPTER%203%20%E1%84%89%E1%85%B5%E1%86%AB%E1%84%80%E1%85%A7%E1%86%BC%E1%84%86%E1%85%A1%E1%86%BC%2066ea61ede36e42e29e276e334b4eb13a/Untitled%2013.png"><img style="width:335px" src="CHAPTER%203%20%E1%84%89%E1%85%B5%E1%86%AB%E1%84%80%E1%85%A7%E1%86%BC%E1%84%86%E1%85%A1%E1%86%BC%2066ea61ede36e42e29e276e334b4eb13a/Untitled%2013.png"/></a></figure><p id="b5d53efd-9eb0-40dc-bfd1-92a4861203db" class="">이 코드에서 A와 B는 2 X 2 행렬이며, 두 행렬의 곱은 넘파이 함수 np.dot()으로 계산합니다.</p><p id="5a502855-ac24-4f94-b6ab-29f87346a84c" class="">np.dot()은 입력이 1차원 배열이면 벡터를, 2차원 배열이면 행렬 곱을 계산합니다.</p><p id="a90f73d3-a5e0-4e2b-baf1-64df669aa58f" class="">
+</p><p id="19ff84d8-29f2-4c89-a2b8-1f9cc93ea59a" class="">❌주의❌</p><p id="159abe1a-d707-443e-b1e6-bad816910257" class="">np.dot(A, B)와 np.dot(B, A)는 다른 값이 될 수 있다는 점입니다.</p><p id="3dc20a2a-06a2-4e4a-99ba-6ef59da7680d" class="">
+</p><p id="bbeb2e48-8cca-4dc1-9a38-c10787c2abe2" class="">다음은  2 X 3 행렬과 3 X 2 행렬의 곱을 파이썬으로 구현한 것입니다.</p><figure id="ac7282d9-a2b3-44e8-a342-76555af195fe" class="image"><a href="CHAPTER%203%20%E1%84%89%E1%85%B5%E1%86%AB%E1%84%80%E1%85%A7%E1%86%BC%E1%84%86%E1%85%A1%E1%86%BC%2066ea61ede36e42e29e276e334b4eb13a/Untitled%2014.png"><img style="width:395px" src="CHAPTER%203%20%E1%84%89%E1%85%B5%E1%86%AB%E1%84%80%E1%85%A7%E1%86%BC%E1%84%86%E1%85%A1%E1%86%BC%2066ea61ede36e42e29e276e334b4eb13a/Untitled%2014.png"/></a></figure><p id="41965314-f0e4-4fb1-8eb7-f0b9dc6ea87b" class="">❌주의❌</p><p id="8cbfe231-adf7-409c-9a25-eef4612818ce" class=""><strong>행렬의 형상</strong>에 주의 해야합니다. </p><p id="3cf44fe6-40e9-402b-bf64-44ff270961dd" class="">구체적으로는 행렬 A의 1번째 차원의 원소 수(열 수)와 행렬 B의 0번째 차원의 원소 수(행 수)가 같아야 합니다. 앞의 예에서도 둘 모두 원소가 3개씩이였던것 처럼 이 값이 다르면 행렬의 곲을 계산할 수 없습니다. </p><p id="b42cf834-e3b7-49cc-9b1f-62c9c2a63da0" class="">
+</p><p id="76a2fd26-489f-493a-bc33-b66e13f8b2dd" class="">실제로 2 X 3 행렬 A와 2 X 2 행렬 C를 곱하면 파이썬은 다음과 같은 오류를 출력합니다.</p><figure id="a68c0e22-c151-4a4c-b50d-b9828bc9c911" class="image"><a href="CHAPTER%203%20%E1%84%89%E1%85%B5%E1%86%AB%E1%84%80%E1%85%A7%E1%86%BC%E1%84%86%E1%85%A1%E1%86%BC%2066ea61ede36e42e29e276e334b4eb13a/Untitled%2015.png"><img style="width:683px" src="CHAPTER%203%20%E1%84%89%E1%85%B5%E1%86%AB%E1%84%80%E1%85%A7%E1%86%BC%E1%84%86%E1%85%A1%E1%86%BC%2066ea61ede36e42e29e276e334b4eb13a/Untitled%2015.png"/></a></figure><p id="dd398659-69b4-495c-ad53-ce96952193e1" class="">
+</p><h2 id="afead73e-57c0-4dcc-9634-e894b084d78f" class="">3.3 신경망에서의 행렬 곱</h2><p id="1b377b3c-68f5-4595-b374-6f804ecc9423" class="">
+</p><ul id="8d0ca021-c3df-4790-97bb-a8bb7abcbeda" class="bulleted-list"><li>행렬의 곱으로 신경망의 계산을 수행합니다.<figure id="c02170ad-2b88-487b-a8a9-5a4bc91e927f" class="image"><a href="CHAPTER%203%20%E1%84%89%E1%85%B5%E1%86%AB%E1%84%80%E1%85%A7%E1%86%BC%E1%84%86%E1%85%A1%E1%86%BC%2066ea61ede36e42e29e276e334b4eb13a/Untitled%2016.png"><img style="width:480px" src="CHAPTER%203%20%E1%84%89%E1%85%B5%E1%86%AB%E1%84%80%E1%85%A7%E1%86%BC%E1%84%86%E1%85%A1%E1%86%BC%2066ea61ede36e42e29e276e334b4eb13a/Untitled%2016.png"/></a></figure><figure id="10dfb925-ec60-4a7d-be69-1071955bdfd3" class="image"><a href="CHAPTER%203%20%E1%84%89%E1%85%B5%E1%86%AB%E1%84%80%E1%85%A7%E1%86%BC%E1%84%86%E1%85%A1%E1%86%BC%2066ea61ede36e42e29e276e334b4eb13a/Untitled%2017.png"><img style="width:372px" src="CHAPTER%203%20%E1%84%89%E1%85%B5%E1%86%AB%E1%84%80%E1%85%A7%E1%86%BC%E1%84%86%E1%85%A1%E1%86%BC%2066ea61ede36e42e29e276e334b4eb13a/Untitled%2017.png"/></a></figure></li></ul><h1 id="4672b1c6-be2b-427a-8599-a10709121917" class="">4. 3층 신경망 구현하기 </h1><p id="bdc9de0d-2a71-443f-a1bd-23c802fe28b7" class="">3층신경망: 입력층(0층)은 2개, 첫 번째 은닉층(1층)은 3개, 두번째 은닉층(2층)은 2개, 출력층(3층)은 2개의 뉴런으로 구성된다.</p><figure id="f5852639-b266-480a-b289-15a4d4d95650" class="image"><a href="CHAPTER%203%20%E1%84%89%E1%85%B5%E1%86%AB%E1%84%80%E1%85%A7%E1%86%BC%E1%84%86%E1%85%A1%E1%86%BC%2066ea61ede36e42e29e276e334b4eb13a/Untitled%2018.png"><img style="width:603px" src="CHAPTER%203%20%E1%84%89%E1%85%B5%E1%86%AB%E1%84%80%E1%85%A7%E1%86%BC%E1%84%86%E1%85%A1%E1%86%BC%2066ea61ede36e42e29e276e334b4eb13a/Untitled%2018.png"/></a></figure><h2 id="7fa9b2e8-3861-475a-adf2-eb00f6db2b6b" class="">4.1 표기법 설명</h2><p id="cfd08ca4-7986-41fe-9424-12de92b23298" class="">
+</p><figure id="73125a7a-13ba-41a4-81da-41365a73517d" class="image"><a href="CHAPTER%203%20%E1%84%89%E1%85%B5%E1%86%AB%E1%84%80%E1%85%A7%E1%86%BC%E1%84%86%E1%85%A1%E1%86%BC%2066ea61ede36e42e29e276e334b4eb13a/Untitled%2019.png"><img style="width:564px" src="CHAPTER%203%20%E1%84%89%E1%85%B5%E1%86%AB%E1%84%80%E1%85%A7%E1%86%BC%E1%84%86%E1%85%A1%E1%86%BC%2066ea61ede36e42e29e276e334b4eb13a/Untitled%2019.png"/></a></figure><p id="bd5bbaad-bfbc-4ac3-9985-ca478ae3ebc4" class="">
+</p><h2 id="d1bacdcb-0bb8-4266-a833-609aa5e30d37" class="">4.2 각 층의 신호 전달 구현하기</h2><p id="75db42da-7aaa-4673-b5dd-0a62bb294341" class="">
+</p><p id="5895189f-9cb9-4add-8518-3611ef78982b" class="">
+</p><h2 id="6467a1b7-202e-497b-9099-7a40ac4a3a37" class="">4.3 구현 정리</h2><p id="5b4de8af-1857-49c9-8075-f267c1b667fc" class="">
+</p><p id="9f1431cb-b4ba-471a-9e84-afb9a349bb7f" class="">
+</p><h1 id="0dd01e92-2fef-4159-aae6-21316d0efcc0" class="">5. 출력층 설계하기 </h1><h2 id="e29b3e3d-911c-4cc3-a5cd-83039d4492bc" class="">5.1 항등 함수와 소프트맥스 함수 구현하기</h2><p id="bdfdf3d5-2d74-4eb4-9091-833c2a4440e1" class="">
+</p><p id="607a9f24-9030-46f7-a60e-1ab622893ae7" class="">
+</p><h2 id="663bdb1e-43db-4103-962e-10955a2eba3a" class="">5.2 소프트맥스 함수의 주의점</h2><p id="7e84e13a-66bf-491a-a025-29d16dbdda15" class="">
+</p><p id="2aa17d65-aff1-46f9-bd25-f00d75ba2297" class="">
+</p><h2 id="0dec6aa5-37e9-4ae5-b142-36ad5857e761" class="">5.3 소프트맥스 함수의 특징</h2><p id="169f49b0-2302-4264-8640-7918752b90a2" class="">
+</p><p id="c8b976a3-9006-4a40-89ca-4d9c44a5ae8d" class="">
+</p><h2 id="481814a8-490d-4a86-8402-925f63ee460f" class="">5.4 출력층의 뉴런 수 정하기</h2><p id="49119261-b6ba-4c81-8a7c-e14ed2215781" class="">
+</p><p id="60716113-664b-4ed0-92b4-6fb669abd633" class="">
+</p><h1 id="5a78b1c6-6ae7-4750-8441-915684f472a6" class="">6. 손글씨 숫자 인식</h1><h2 id="3d1c6976-9b09-47cf-805f-a8548300c27a" class="">6.1 MNIST 데이터 셋</h2><p id="aa3d02ec-dff2-46ac-9887-b2b5f01afc5f" class="">
+</p><h2 id="889cff48-1790-4936-81ac-0fea0f5c1d33" class="">6.2 신경망의 추론 처리</h2><p id="6bc5d05c-2b28-4c3e-9a9c-57a2a2ede9dc" class="">
+</p><h1 id="3a4e305c-ffc5-44dd-9bc5-a513f67016d1" class="">7. 정리 </h1><p id="1f84cf2f-fdb0-42cb-8af2-28322e04f3a7" class="">
+</p><figure id="d8dca6bd-1da5-4893-9e1e-1b4f88ea5cd5" class="image"><a href="CHAPTER%203%20%E1%84%89%E1%85%B5%E1%86%AB%E1%84%80%E1%85%A7%E1%86%BC%E1%84%86%E1%85%A1%E1%86%BC%2066ea61ede36e42e29e276e334b4eb13a/Untitled%2020.png"><img style="width:720px" src="CHAPTER%203%20%E1%84%89%E1%85%B5%E1%86%AB%E1%84%80%E1%85%A7%E1%86%BC%E1%84%86%E1%85%A1%E1%86%BC%2066ea61ede36e42e29e276e334b4eb13a/Untitled%2020.png"/></a></figure></div></article></body></html>
