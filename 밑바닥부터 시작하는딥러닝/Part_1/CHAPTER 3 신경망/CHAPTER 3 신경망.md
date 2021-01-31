@@ -14,7 +14,7 @@
     - 은닉층 : 뉴런이 사람 눈에 보이지 않는다.
     - 출력층
 
-    ![Untitled](CHAPTER 3 신경망.assets/Untitled.png)
+    ![Untitled](https://github.com/sang-rak/TIL/blob/master/%EB%B0%91%EB%B0%94%EB%8B%A5%EB%B6%80%ED%84%B0%20%EC%8B%9C%EC%9E%91%ED%95%98%EB%8A%94%EB%94%A5%EB%9F%AC%EB%8B%9D/Part_1/CHAPTER%203%20%EC%8B%A0%EA%B2%BD%EB%A7%9D/CHAPTER%203%20%EC%8B%A0%EA%B2%BD%EB%A7%9D.assets/Untitled.png)
 
 ## 1.2 퍼셉트론 복습
 
@@ -24,11 +24,11 @@
     $$[식3.1] \space y = {0 (b+w_1*x_1 + w_2*x_2 \le 0), 
      1(b+w_1*x_1+w_2*x_2>0)} $$
 
-![](CHAPTER 3 신경망.assets/Untitled 1.png)
+![](https://github.com/sang-rak/TIL/blob/master/%EB%B0%91%EB%B0%94%EB%8B%A5%EB%B6%80%ED%84%B0%20%EC%8B%9C%EC%9E%91%ED%95%98%EB%8A%94%EB%94%A5%EB%9F%AC%EB%8B%9D/Part_1/CHAPTER%203%20%EC%8B%A0%EA%B2%BD%EB%A7%9D/CHAPTER%203%20%EC%8B%A0%EA%B2%BD%EB%A7%9D.assets/Untitled%201.png)
 
 - **편향**을 명시한 그림
 
-![Untitled 2](CHAPTER 3 신경망.assets/Untitled 2.png)
+![Untitled 2](https://github.com/sang-rak/TIL/blob/master/%EB%B0%91%EB%B0%94%EB%8B%A5%EB%B6%80%ED%84%B0%20%EC%8B%9C%EC%9E%91%ED%95%98%EB%8A%94%EB%94%A5%EB%9F%AC%EB%8B%9D/Part_1/CHAPTER%203%20%EC%8B%A0%EA%B2%BD%EB%A7%9D/CHAPTER%203%20%EC%8B%A0%EA%B2%BD%EB%A7%9D.assets/Untitled%202.png)
 
 ## 1.3 활성화 함수의 등장
 
@@ -46,7 +46,7 @@
 
 신호를 변환하고 변환된 신호를 다음 뉴런에 전달한다
 
-![Untitled 3](CHAPTER 3 신경망.assets/Untitled 3.png)
+![Untitled 3](https://github.com/sang-rak/TIL/blob/master/%EB%B0%91%EB%B0%94%EB%8B%A5%EB%B6%80%ED%84%B0%20%EC%8B%9C%EC%9E%91%ED%95%98%EB%8A%94%EB%94%A5%EB%9F%AC%EB%8B%9D/Part_1/CHAPTER%203%20%EC%8B%A0%EA%B2%BD%EB%A7%9D/CHAPTER%203%20%EC%8B%A0%EA%B2%BD%EB%A7%9D.assets/Untitled%203.png)
 
 ## 2.2 계단 함수 구현하기
 
@@ -82,9 +82,9 @@ def step_fuction(x):
 
 이 y는 bool배열입니다. 그래서 배열 y의 원소를 bool에서 int형으로 바꿔줍니다.
 
-![Untitled 4](CHAPTER 3 신경망.assets/Untitled 4.png)
+![Untitled 4](https://github.com/sang-rak/TIL/blob/master/%EB%B0%91%EB%B0%94%EB%8B%A5%EB%B6%80%ED%84%B0%20%EC%8B%9C%EC%9E%91%ED%95%98%EB%8A%94%EB%94%A5%EB%9F%AC%EB%8B%9D/Part_1/CHAPTER%203%20%EC%8B%A0%EA%B2%BD%EB%A7%9D/CHAPTER%203%20%EC%8B%A0%EA%B2%BD%EB%A7%9D.assets/Untitled%204.png)
 
-![Untitled 5](CHAPTER 3 신경망.assets/Untitled 5.png)
+![Untitled 5](https://github.com/sang-rak/TIL/blob/master/%EB%B0%91%EB%B0%94%EB%8B%A5%EB%B6%80%ED%84%B0%20%EC%8B%9C%EC%9E%91%ED%95%98%EB%8A%94%EB%94%A5%EB%9F%AC%EB%8B%9D/Part_1/CHAPTER%203%20%EC%8B%A0%EA%B2%BD%EB%A7%9D/CHAPTER%203%20%EC%8B%A0%EA%B2%BD%EB%A7%9D.assets/Untitled%205.png)
 
 ## 2.3 계단 함수의 그래프
 
@@ -110,7 +110,7 @@ step_function()은 인수로 받은 넘파이 배열의 원소 각각을 인수�
 
 이 x, y 배열을 그래프로 그리면 아래 그림 처럼 됩니다.
 
-![Untitled 6](CHAPTER 3 신경망.assets/Untitled 6.png)
+![Untitled 6](https://github.com/sang-rak/TIL/blob/master/%EB%B0%91%EB%B0%94%EB%8B%A5%EB%B6%80%ED%84%B0%20%EC%8B%9C%EC%9E%91%ED%95%98%EB%8A%94%EB%94%A5%EB%9F%AC%EB%8B%9D/Part_1/CHAPTER%203%20%EC%8B%A0%EA%B2%BD%EB%A7%9D/CHAPTER%203%20%EC%8B%A0%EA%B2%BD%EB%A7%9D.assets/Untitled%206.png)
 
 ## 2.4 시그모이드 함수 구현하기
 
@@ -124,7 +124,7 @@ def sigmoid(x):
 
 - 실험
 
-    ![Untitled 7](CHAPTER 3 신경망.assets/Untitled 7.png)
+    ![Untitled 7](https://github.com/sang-rak/TIL/blob/master/%EB%B0%91%EB%B0%94%EB%8B%A5%EB%B6%80%ED%84%B0%20%EC%8B%9C%EC%9E%91%ED%95%98%EB%8A%94%EB%94%A5%EB%9F%AC%EB%8B%9D/Part_1/CHAPTER%203%20%EC%8B%A0%EA%B2%BD%EB%A7%9D/CHAPTER%203%20%EC%8B%A0%EA%B2%BD%EB%A7%9D.assets/Untitled%207.png)
 
 넘파이 배열도 처리해주는 이유는 넘바이의 **브로드 캐스트**에 있습니다.
 
@@ -140,13 +140,13 @@ plt.ylim(-0.1, 1.1) # y축의 범위 지정
 plt.show()
 ```
 
-![Untitled 8](CHAPTER 3 신경망.assets/Untitled 8.png)
+![Untitled 8](https://github.com/sang-rak/TIL/blob/master/%EB%B0%91%EB%B0%94%EB%8B%A5%EB%B6%80%ED%84%B0%20%EC%8B%9C%EC%9E%91%ED%95%98%EB%8A%94%EB%94%A5%EB%9F%AC%EB%8B%9D/Part_1/CHAPTER%203%20%EC%8B%A0%EA%B2%BD%EB%A7%9D/CHAPTER%203%20%EC%8B%A0%EA%B2%BD%EB%A7%9D.assets/Untitled%208.png)
 
 ## 2.5 시그모이드 함수와 계단 함수 비교
 
 두함수를 함께 그리면 아래와 같습니다.
 
-![Untitled 9](CHAPTER 3 신경망.assets/Untitled 9.png)
+![Untitled 9](https://github.com/sang-rak/TIL/blob/master/%EB%B0%91%EB%B0%94%EB%8B%A5%EB%B6%80%ED%84%B0%20%EC%8B%9C%EC%9E%91%ED%95%98%EB%8A%94%EB%94%A5%EB%9F%AC%EB%8B%9D/Part_1/CHAPTER%203%20%EC%8B%A0%EA%B2%BD%EB%A7%9D/CHAPTER%203%20%EC%8B%A0%EA%B2%BD%EB%A7%9D.assets/Untitled%209.png)
 
 차이점이라면 '매끄러움'의 차이가 있습니다 시그모이드함수는 부드러운 곡선이며 입력에 따라 출력이 연속적으로 변화합니다. 매끄러움은 신경망학습에서 중요한 역할을 하게 됩니다.
 
@@ -180,7 +180,7 @@ plt.show()
 
 - Relu함수의 그래프
 
-    ![Untitled 10](CHAPTER 3 신경망.assets/Untitled 10.png)
+    ![Untitled 10](https://github.com/sang-rak/TIL/blob/master/%EB%B0%91%EB%B0%94%EB%8B%A5%EB%B6%80%ED%84%B0%20%EC%8B%9C%EC%9E%91%ED%95%98%EB%8A%94%EB%94%A5%EB%9F%AC%EB%8B%9D/Part_1/CHAPTER%203%20%EC%8B%A0%EA%B2%BD%EB%A7%9D/CHAPTER%203%20%EC%8B%A0%EA%B2%BD%EB%A7%9D.assets/Untitled%2010.png)
 
 # 3. 다차원 배열의 계산
 
@@ -190,7 +190,7 @@ plt.show()
 
 - 1차원 배열
 
-    ![Untitled 11](CHAPTER 3 신경망.assets/Untitled 11.png)
+    ![Untitled 11](https://github.com/sang-rak/TIL/blob/master/%EB%B0%91%EB%B0%94%EB%8B%A5%EB%B6%80%ED%84%B0%20%EC%8B%9C%EC%9E%91%ED%95%98%EB%8A%94%EB%94%A5%EB%9F%AC%EB%8B%9D/Part_1/CHAPTER%203%20%EC%8B%A0%EA%B2%BD%EB%A7%9D/CHAPTER%203%20%EC%8B%A0%EA%B2%BD%EB%A7%9D.assets/Untitled%2011.png)
 
 이와 같이 배열의 차원 수는 np.ndim()함수로 확인할 수 있습니다.
 
@@ -204,7 +204,7 @@ A.shaped은 튜플을 반환 합니다.
 
 - 2차원 배열
 
-    ![Untitled 12](CHAPTER 3 신경망.assets/Untitled 12.png)
+    ![Untitled 12](https://github.com/sang-rak/TIL/blob/master/%EB%B0%91%EB%B0%94%EB%8B%A5%EB%B6%80%ED%84%B0%20%EC%8B%9C%EC%9E%91%ED%95%98%EB%8A%94%EB%94%A5%EB%9F%AC%EB%8B%9D/Part_1/CHAPTER%203%20%EC%8B%A0%EA%B2%BD%EB%A7%9D/CHAPTER%203%20%EC%8B%A0%EA%B2%BD%EB%A7%9D.assets/Untitled%2012.png)
 
 2차원 배열은 행렬이라고 부르고 가로방향을 행(row) 세로방향을 열(column)이라고 합니다.
 
@@ -218,7 +218,7 @@ A.shaped은 튜플을 반환 합니다.
 
 이 계산을 파이썬으로 구현하면 다음과 같습니다.
 
-![Untitled 13](CHAPTER 3 신경망.assets/Untitled 13.png)
+![Untitled 13](https://github.com/sang-rak/TIL/blob/master/%EB%B0%91%EB%B0%94%EB%8B%A5%EB%B6%80%ED%84%B0%20%EC%8B%9C%EC%9E%91%ED%95%98%EB%8A%94%EB%94%A5%EB%9F%AC%EB%8B%9D/Part_1/CHAPTER%203%20%EC%8B%A0%EA%B2%BD%EB%A7%9D/CHAPTER%203%20%EC%8B%A0%EA%B2%BD%EB%A7%9D.assets/Untitled%2013.png)
 
 이 코드에서 A와 B는 2 X 2 행렬이며, 두 행렬의 곱은 넘파이 함수 np.dot()으로 계산합니다.
 
@@ -230,7 +230,7 @@ np.dot(A, B)와 np.dot(B, A)는 다른 값이 될 수 있다는 점입니다.
 
 다음은  2 X 3 행렬과 3 X 2 행렬의 곱을 파이썬으로 구현한 것입니다.
 
-![Untitled 14](CHAPTER 3 신경망.assets/Untitled 14.png)
+![Untitled 14](https://github.com/sang-rak/TIL/blob/master/%EB%B0%91%EB%B0%94%EB%8B%A5%EB%B6%80%ED%84%B0%20%EC%8B%9C%EC%9E%91%ED%95%98%EB%8A%94%EB%94%A5%EB%9F%AC%EB%8B%9D/Part_1/CHAPTER%203%20%EC%8B%A0%EA%B2%BD%EB%A7%9D/CHAPTER%203%20%EC%8B%A0%EA%B2%BD%EB%A7%9D.assets/Untitled%2014.png)
 
 ❌주의❌
 
@@ -240,49 +240,49 @@ np.dot(A, B)와 np.dot(B, A)는 다른 값이 될 수 있다는 점입니다.
 
 실제로 2 X 3 행렬 A와 2 X 2 행렬 C를 곱하면 파이썬은 다음과 같은 오류를 출력합니다.
 
-![Untitled 15](CHAPTER 3 신경망.assets/Untitled 15.png)
+![Untitled 15](https://github.com/sang-rak/TIL/blob/master/%EB%B0%91%EB%B0%94%EB%8B%A5%EB%B6%80%ED%84%B0%20%EC%8B%9C%EC%9E%91%ED%95%98%EB%8A%94%EB%94%A5%EB%9F%AC%EB%8B%9D/Part_1/CHAPTER%203%20%EC%8B%A0%EA%B2%BD%EB%A7%9D/CHAPTER%203%20%EC%8B%A0%EA%B2%BD%EB%A7%9D.assets/Untitled%2015.png)
 
 ## 3.3 신경망에서의 행렬 곱
 
 - 행렬의 곱으로 신경망의 계산을 수행합니다.
 
-    ![Untitled 16](CHAPTER 3 신경망.assets/Untitled 16.png)
+    ![Untitled 16](https://github.com/sang-rak/TIL/blob/master/%EB%B0%91%EB%B0%94%EB%8B%A5%EB%B6%80%ED%84%B0%20%EC%8B%9C%EC%9E%91%ED%95%98%EB%8A%94%EB%94%A5%EB%9F%AC%EB%8B%9D/Part_1/CHAPTER%203%20%EC%8B%A0%EA%B2%BD%EB%A7%9D/CHAPTER%203%20%EC%8B%A0%EA%B2%BD%EB%A7%9D.assets/Untitled%2016.png)
 
-    ![Untitled 17](CHAPTER 3 신경망.assets/Untitled 17.png)
+    ![Untitled 17](https://github.com/sang-rak/TIL/blob/master/%EB%B0%91%EB%B0%94%EB%8B%A5%EB%B6%80%ED%84%B0%20%EC%8B%9C%EC%9E%91%ED%95%98%EB%8A%94%EB%94%A5%EB%9F%AC%EB%8B%9D/Part_1/CHAPTER%203%20%EC%8B%A0%EA%B2%BD%EB%A7%9D/CHAPTER%203%20%EC%8B%A0%EA%B2%BD%EB%A7%9D.assets/Untitled%2017.png)
 
 # 4. 3층 신경망 구현하기
 
 3층신경망: 입력층(0층)은 2개, 첫 번째 은닉층(1층)은 3개, 두번째 은닉층(2층)은 2개, 출력층(3층)은 2개의 뉴런으로 구성된다.
 
-![Untitled 18](CHAPTER 3 신경망.assets/Untitled 18.png)
+![Untitled 18](https://github.com/sang-rak/TIL/blob/master/%EB%B0%91%EB%B0%94%EB%8B%A5%EB%B6%80%ED%84%B0%20%EC%8B%9C%EC%9E%91%ED%95%98%EB%8A%94%EB%94%A5%EB%9F%AC%EB%8B%9D/Part_1/CHAPTER%203%20%EC%8B%A0%EA%B2%BD%EB%A7%9D/CHAPTER%203%20%EC%8B%A0%EA%B2%BD%EB%A7%9D.assets/Untitled%2018.png)
 
 ## 4.1 표기법 설명
 
-![Untitled 19](CHAPTER 3 신경망.assets/Untitled 19.png)
+![Untitled 19](https://github.com/sang-rak/TIL/blob/master/%EB%B0%91%EB%B0%94%EB%8B%A5%EB%B6%80%ED%84%B0%20%EC%8B%9C%EC%9E%91%ED%95%98%EB%8A%94%EB%94%A5%EB%9F%AC%EB%8B%9D/Part_1/CHAPTER%203%20%EC%8B%A0%EA%B2%BD%EB%A7%9D/CHAPTER%203%20%EC%8B%A0%EA%B2%BD%EB%A7%9D.assets/Untitled%2019.png)
 
 ## 4.2 각 층의 신호 전달 구현하기
 
 - 입력층에서 1층으로 신호 전달
 
-![Untitled 20](CHAPTER 3 신경망.assets/Untitled 20.png)
+![Untitled 20](https://github.com/sang-rak/TIL/blob/master/%EB%B0%91%EB%B0%94%EB%8B%A5%EB%B6%80%ED%84%B0%20%EC%8B%9C%EC%9E%91%ED%95%98%EB%8A%94%EB%94%A5%EB%9F%AC%EB%8B%9D/Part_1/CHAPTER%203%20%EC%8B%A0%EA%B2%BD%EB%A7%9D/CHAPTER%203%20%EC%8B%A0%EA%B2%BD%EB%A7%9D.assets/Untitled%2020.png)
 
 은닉층에서  가중치 합을 $a^1_1$로 표기하고 활성화 함수 h()로 변환된 신호를 Z값으로 표현합니다.
 
 이를 파이썬으로 구현하면 
 
-![Untitled 21](CHAPTER 3 신경망.assets/Untitled 21.png)
+![Untitled 21](https://github.com/sang-rak/TIL/blob/master/%EB%B0%91%EB%B0%94%EB%8B%A5%EB%B6%80%ED%84%B0%20%EC%8B%9C%EC%9E%91%ED%95%98%EB%8A%94%EB%94%A5%EB%9F%AC%EB%8B%9D/Part_1/CHAPTER%203%20%EC%8B%A0%EA%B2%BD%EB%A7%9D/CHAPTER%203%20%EC%8B%A0%EA%B2%BD%EB%A7%9D.assets/Untitled%2021.png)
 
 - 1층에서 2층으로의 신호 전달
 
-    ![Untitled 22](CHAPTER 3 신경망.assets/Untitled 22.png)
+    ![Untitled 22](https://github.com/sang-rak/TIL/blob/master/%EB%B0%91%EB%B0%94%EB%8B%A5%EB%B6%80%ED%84%B0%20%EC%8B%9C%EC%9E%91%ED%95%98%EB%8A%94%EB%94%A5%EB%9F%AC%EB%8B%9D/Part_1/CHAPTER%203%20%EC%8B%A0%EA%B2%BD%EB%A7%9D/CHAPTER%203%20%EC%8B%A0%EA%B2%BD%EB%A7%9D.assets/Untitled%2022.png)
 
-![Untitled 23](CHAPTER 3 신경망.assets/Untitled 23.png)
+![Untitled 23](https://github.com/sang-rak/TIL/blob/master/%EB%B0%91%EB%B0%94%EB%8B%A5%EB%B6%80%ED%84%B0%20%EC%8B%9C%EC%9E%91%ED%95%98%EB%8A%94%EB%94%A5%EB%9F%AC%EB%8B%9D/Part_1/CHAPTER%203%20%EC%8B%A0%EA%B2%BD%EB%A7%9D/CHAPTER%203%20%EC%8B%A0%EA%B2%BD%EB%A7%9D.assets/Untitled%2023.png)
 
 이 구현은 1층의 출력 Z1이 2층의 입력이 된다는 점을 제외하면 조금전의 구현과 같습니다.
 
 - 2층에서 출력층으로의 신호 전달
 
-    ![Untitled 24](CHAPTER 3 신경망.assets/Untitled 24.png)
+    ![Untitled 24](https://github.com/sang-rak/TIL/blob/master/%EB%B0%91%EB%B0%94%EB%8B%A5%EB%B6%80%ED%84%B0%20%EC%8B%9C%EC%9E%91%ED%95%98%EB%8A%94%EB%94%A5%EB%9F%AC%EB%8B%9D/Part_1/CHAPTER%203%20%EC%8B%A0%EA%B2%BD%EB%A7%9D/CHAPTER%203%20%EC%8B%A0%EA%B2%BD%EB%A7%9D.assets/Untitled%2024.png)
 
 ```python
 def identity_function(x):
@@ -305,7 +305,7 @@ Y = identity_function(A3)
 
 지금까지의 구현을 정리해본 코드입니다.
 
-![Untitled 25](CHAPTER 3 신경망.assets/Untitled 25.png)
+![Untitled 25](https://github.com/sang-rak/TIL/blob/master/%EB%B0%91%EB%B0%94%EB%8B%A5%EB%B6%80%ED%84%B0%20%EC%8B%9C%EC%9E%91%ED%95%98%EB%8A%94%EB%94%A5%EB%9F%AC%EB%8B%9D/Part_1/CHAPTER%203%20%EC%8B%A0%EA%B2%BD%EB%A7%9D/CHAPTER%203%20%EC%8B%A0%EA%B2%BD%EB%A7%9D.assets/Untitled%2025.png)
 
 init_network(): 가중치와 편향을 초기화 → 딕셔너리 변수인 network에 저장
 
@@ -329,15 +329,15 @@ forward(): 입력 신호를 출력으로 변환하는 처리 과정을 구현
 
 - **소프트맥스 함수의 식**은 다음과 같습니다.
 
-    ![Untitled 26](CHAPTER 3 신경망.assets/Untitled 26.png)
+    ![Untitled 26](https://github.com/sang-rak/TIL/blob/master/%EB%B0%91%EB%B0%94%EB%8B%A5%EB%B6%80%ED%84%B0%20%EC%8B%9C%EC%9E%91%ED%95%98%EB%8A%94%EB%94%A5%EB%9F%AC%EB%8B%9D/Part_1/CHAPTER%203%20%EC%8B%A0%EA%B2%BD%EB%A7%9D/CHAPTER%203%20%EC%8B%A0%EA%B2%BD%EB%A7%9D.assets/Untitled%2026.png)
 
 이 소프트 함수를 그림으로 나타내면 식에서 보듯 출력층의 각 뉴런이 모든 입력신호에서 영향을 받기 때문에 소프트 맥스의 출력은 모든 입력신호의 지수 함수의 합으로 구성됩니다.
 
-![Untitled 27](CHAPTER 3 신경망.assets/Untitled 27.png)
+![Untitled 27](https://github.com/sang-rak/TIL/blob/master/%EB%B0%91%EB%B0%94%EB%8B%A5%EB%B6%80%ED%84%B0%20%EC%8B%9C%EC%9E%91%ED%95%98%EB%8A%94%EB%94%A5%EB%9F%AC%EB%8B%9D/Part_1/CHAPTER%203%20%EC%8B%A0%EA%B2%BD%EB%A7%9D/CHAPTER%203%20%EC%8B%A0%EA%B2%BD%EB%A7%9D.assets/Untitled%2027.png)
 
 - 파이썬 구현은 다음과 같습니다.
 
-    ![Untitled 28](CHAPTER 3 신경망.assets/Untitled 28.png)
+    ![Untitled 28](https://github.com/sang-rak/TIL/blob/master/%EB%B0%91%EB%B0%94%EB%8B%A5%EB%B6%80%ED%84%B0%20%EC%8B%9C%EC%9E%91%ED%95%98%EB%8A%94%EB%94%A5%EB%9F%AC%EB%8B%9D/Part_1/CHAPTER%203%20%EC%8B%A0%EA%B2%BD%EB%A7%9D/CHAPTER%203%20%EC%8B%A0%EA%B2%BD%EB%A7%9D.assets/Untitled%2028.png)
 
 앞으로 사용하기위해 함수로 정의해둡니다.
 
@@ -359,7 +359,7 @@ def softmax(a):
 
 - **오버플로 문제**를 개선하기위해 한 수식입니다.
 
-    ![Untitled 29](CHAPTER 3 신경망.assets/Untitled 29.png)
+    ![Untitled 29](https://github.com/sang-rak/TIL/blob/master/%EB%B0%91%EB%B0%94%EB%8B%A5%EB%B6%80%ED%84%B0%20%EC%8B%9C%EC%9E%91%ED%95%98%EB%8A%94%EB%94%A5%EB%9F%AC%EB%8B%9D/Part_1/CHAPTER%203%20%EC%8B%A0%EA%B2%BD%EB%A7%9D/CHAPTER%203%20%EC%8B%A0%EA%B2%BD%EB%A7%9D.assets/Untitled%2029.png)
 
     분모 분자에 C를 곱하여도 결국 결과는 바뀌지 않음
 
@@ -379,7 +379,7 @@ return y
 
 - softmax() 함수를 사용하면 다음과 같이 계산
 
-    ![Untitled 30](CHAPTER 3 신경망.assets/Untitled 30.png)
+    ![Untitled 30](https://github.com/sang-rak/TIL/blob/master/%EB%B0%91%EB%B0%94%EB%8B%A5%EB%B6%80%ED%84%B0%20%EC%8B%9C%EC%9E%91%ED%95%98%EB%8A%94%EB%94%A5%EB%9F%AC%EB%8B%9D/Part_1/CHAPTER%203%20%EC%8B%A0%EA%B2%BD%EB%A7%9D/CHAPTER%203%20%EC%8B%A0%EA%B2%BD%EB%A7%9D.assets/Untitled%2030.png)
 
 소프트맥스 함수의 출력은 0에서 1.0 사이의 실수입니다. 또한 소프트맥스 함수 출력의 총합은 1
 
@@ -454,17 +454,17 @@ print(t_test.shape) # (10000,)
 
 파이썬에는 pickle이라는 기능이 있습니다. 이는 프로그램 실행 중에 특정 객체를 파일로 저장하는 기능입니다. 저장해둔 pickle파일을 로드하면 실행 당시의 객체를 즉시 복원할 수 있습니다.
 
-![Untitled 31](CHAPTER 3 신경망.assets/Untitled 31.png)
+![Untitled 31](https://github.com/sang-rak/TIL/blob/master/%EB%B0%91%EB%B0%94%EB%8B%A5%EB%B6%80%ED%84%B0%20%EC%8B%9C%EC%9E%91%ED%95%98%EB%8A%94%EB%94%A5%EB%9F%AC%EB%8B%9D/Part_1/CHAPTER%203%20%EC%8B%A0%EA%B2%BD%EB%A7%9D/CHAPTER%203%20%EC%8B%A0%EA%B2%BD%EB%A7%9D.assets/Untitled%2031.png)
 
 mnist.pkl 이 생성된 모습
 
 - 데이터 확인을 위해 MNIST 이미지를 화면으로 불러옵니다.
 
-    ![Untitled 32](CHAPTER 3 신경망.assets/Untitled 32.png)
+    ![Untitled 32](https://github.com/sang-rak/TIL/blob/master/%EB%B0%91%EB%B0%94%EB%8B%A5%EB%B6%80%ED%84%B0%20%EC%8B%9C%EC%9E%91%ED%95%98%EB%8A%94%EB%94%A5%EB%9F%AC%EB%8B%9D/Part_1/CHAPTER%203%20%EC%8B%A0%EA%B2%BD%EB%A7%9D/CHAPTER%203%20%EC%8B%A0%EA%B2%BD%EB%A7%9D.assets/Untitled%2032.png)
 
     실행하면 PNG 사진 형태로 나타납니다.
 
-    ![Untitled 33](CHAPTER 3 신경망.assets/Untitled 33.png)
+    ![Untitled 33](https://github.com/sang-rak/TIL/blob/master/%EB%B0%91%EB%B0%94%EB%8B%A5%EB%B6%80%ED%84%B0%20%EC%8B%9C%EC%9E%91%ED%95%98%EB%8A%94%EB%94%A5%EB%9F%AC%EB%8B%9D/Part_1/CHAPTER%203%20%EC%8B%A0%EA%B2%BD%EB%A7%9D/CHAPTER%203%20%EC%8B%A0%EA%B2%BD%EB%A7%9D.assets/Untitled%2033.png)
 
 ❌주의❌
 
@@ -511,7 +511,7 @@ MNIST 데이터셋을 가지고 신경망을 구현 합니다.
 
 - 정확도 평가 코드
 
-![Untitled 34](CHAPTER 3 신경망.assets/Untitled 34.png)
+![Untitled 34](https://github.com/sang-rak/TIL/blob/master/%EB%B0%91%EB%B0%94%EB%8B%A5%EB%B6%80%ED%84%B0%20%EC%8B%9C%EC%9E%91%ED%95%98%EB%8A%94%EB%94%A5%EB%9F%AC%EB%8B%9D/Part_1/CHAPTER%203%20%EC%8B%A0%EA%B2%BD%EB%A7%9D/CHAPTER%203%20%EC%8B%A0%EA%B2%BD%EB%A7%9D.assets/Untitled%2034.png)
 
 ❌주의❌
 
@@ -558,13 +558,13 @@ def predict(network, x):
 
 - 정확도가 93% 인것을 확인할 수 있다.
 
-![Untitled 35](CHAPTER 3 신경망.assets/Untitled 35.png)
+![Untitled 35](https://github.com/sang-rak/TIL/blob/master/%EB%B0%91%EB%B0%94%EB%8B%A5%EB%B6%80%ED%84%B0%20%EC%8B%9C%EC%9E%91%ED%95%98%EB%8A%94%EB%94%A5%EB%9F%AC%EB%8B%9D/Part_1/CHAPTER%203%20%EC%8B%A0%EA%B2%BD%EB%A7%9D/CHAPTER%203%20%EC%8B%A0%EA%B2%BD%EB%A7%9D.assets/Untitled%2035.png)
 
 ## 6.3 배치 처리
 
 - 신경망 각 층의 가중치 형상 출력
 
-    ![Untitled 36](CHAPTER 3 신경망.assets/Untitled 36.png)
+    ![Untitled 36](https://github.com/sang-rak/TIL/blob/master/%EB%B0%91%EB%B0%94%EB%8B%A5%EB%B6%80%ED%84%B0%20%EC%8B%9C%EC%9E%91%ED%95%98%EB%8A%94%EB%94%A5%EB%9F%AC%EB%8B%9D/Part_1/CHAPTER%203%20%EC%8B%A0%EA%B2%BD%EB%A7%9D/CHAPTER%203%20%EC%8B%A0%EA%B2%BD%EB%A7%9D.assets/Untitled%2036.png)
 
     다차원 배열의 대응하는 차원의 원소수가 일치함을 확인
 
