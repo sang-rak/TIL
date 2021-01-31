@@ -14,7 +14,7 @@
     - 은닉층 : 뉴런이 사람 눈에 보이지 않는다.
     - 출력층
 
-    ![Untitled](CHAPTER 3 신경망.assets/Untitled.png)
+    ![Untitled](TIL/밑바닥부터 시작하는딥러닝/Part_1/CHAPTER 3 신경망.assets/Untitled.png)
 
 ## 1.2 퍼셉트론 복습
 
