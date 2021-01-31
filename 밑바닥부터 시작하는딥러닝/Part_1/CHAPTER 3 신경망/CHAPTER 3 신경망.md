@@ -24,7 +24,7 @@
     $$[식3.1] \space y = {0 (b+w_1*x_1 + w_2*x_2 \le 0), 
      1(b+w_1*x_1+w_2*x_2>0)} $$
 
-![](CHAPTER 3 신경망.assets/Untitled 1.png)
+![](https://github.com/sang-rak/TIL/blob/master/%EB%B0%91%EB%B0%94%EB%8B%A5%EB%B6%80%ED%84%B0%20%EC%8B%9C%EC%9E%91%ED%95%98%EB%8A%94%EB%94%A5%EB%9F%AC%EB%8B%9D/Part_1/CHAPTER%203%20%EC%8B%A0%EA%B2%BD%EB%A7%9D/CHAPTER%203%20%EC%8B%A0%EA%B2%BD%EB%A7%9D.assets/Untitled%201.png)
 
 - **편향**을 명시한 그림
 
