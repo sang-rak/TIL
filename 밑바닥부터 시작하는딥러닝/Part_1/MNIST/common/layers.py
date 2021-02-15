@@ -44,12 +44,12 @@ class Affine:
         
         self.x = None
         self.original_x_shape = None
-        # 重み・バイアスパラメータの微分
+        # 가중치와 편향 매개변수의 미분
         self.dW = None
         self.db = None
 
     def forward(self, x):
-        # テンソル対応
+
         self.original_x_shape = x.shape
         x = x.reshape(x.shape[0], -1)
         self.x = x
@@ -69,9 +69,9 @@ class Affine:
 
 class SoftmaxWithLoss:
     def __init__(self):
-        self.loss = None
-        self.y = None # softmaxの出力
-        self.t = None # 教師データ
+        self.loss = None # 손실
+        self.y = None # softmax의 출력
+        self.t = None # 정답레이블(원-핫 벡터)
 
     def forward(self, x, t):
         self.t = t
@@ -82,7 +82,7 @@ class SoftmaxWithLoss:
 
     def backward(self, dout=1):
         batch_size = self.t.shape[0]
-        if self.t.size == self.y.size: # 教師データがone-hot-vectorの場合
+        if self.t.size == self.y.size: 
             dx = (self.y - self.t) / batch_size
         else:
             dx = self.y.copy()
