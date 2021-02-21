@@ -1,0 +1,705 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>CHAPTER 6 학습 관련 기술들</title><style>
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+.select-value-color-default { background-color: rgba(206,205,202,0.5); }
+.select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+.select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+.select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+.select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+.select-value-color-green { background-color: rgba(0,135,107,0.2); }
+.select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+.select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+.select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+.select-value-color-red { background-color: rgba(255,0,26,0.2); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="d38b5e9a-d252-4b39-86ed-c65cc19f6caf" class="page sans"><header><div class="page-header-icon undefined"><span class="icon">🔸</span></div><h1 class="page-title">CHAPTER 6 학습 관련 기술들</h1></header><div class="page-body"><h1 id="9f995998-b3ba-4402-a4e7-20b3947608e7" class="">1. 매개변수 갱신</h1><p id="a1dae410-c7d7-4857-9940-81041c617081" class="">신경망 학습의 목적은 항상 &#x27;손실 함수의 값을 가능한 낮추는 매개변수를 찾는 것&#x27;이 목표이다.</p><p id="dad97cf6-6161-446e-adaf-8128579addf6" class="">이를 위해서 매개변수의 기울기를 이용하였고, 갱신한 매개 변수 값으로 다시 갱신하고,갱신하는 방법을 취했다. 이러한 것을 SGD, 확률적 경사 하강법이라고 한다.</p><h2 id="c8eaff2c-b2be-457f-b9b1-add502d3b96f" class="">1.2 확률적 경사 하강법(SGD)</h2><p id="b1ea3b54-5fa1-465b-a856-789542c3fe21" class="">확률적 경사 하강법이란 간단히 말하면, 기울어진 방향으로 일정 거리만큼 가겠다는 방법이다.</p><p id="cfb9957c-cbeb-40f1-aad3-9ef1b073783a" class="">수식은 다음과 같다.</p><p id="dd729eb3-d580-4576-b5ab-069fafc276bd" class="">
+</p><figure id="15a2c841-3176-42ef-8e15-eaf21512a504" class="image"><a href="CHAPTER%206%20%E1%84%92%E1%85%A1%E1%86%A8%E1%84%89%E1%85%B3%E1%86%B8%20%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%A7%E1%86%AB%20%E1%84%80%E1%85%B5%E1%84%89%E1%85%AE%E1%86%AF%E1%84%83%E1%85%B3%E1%86%AF%2015a2c841317642ef8e15eaf21512a504/Untitled.png"><img style="width:237px" src="CHAPTER%206%20%E1%84%92%E1%85%A1%E1%86%A8%E1%84%89%E1%85%B3%E1%86%B8%20%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%A7%E1%86%AB%20%E1%84%80%E1%85%B5%E1%84%89%E1%85%AE%E1%86%AF%E1%84%83%E1%85%B3%E1%86%AF%2015a2c841317642ef8e15eaf21512a504/Untitled.png"/></a></figure><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="f0e2212c-a91e-43f6-b4bf-8831f4cf0560" class="code code-wrap"><code><span class="token keyword">class</span> <span class="token class-name">SGD</span><span class="token punctuation">:</span>
+	<span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> lr<span class="token operator">=</span><span class="token number">0.01</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+		self<span class="token punctuation">.</span>lr <span class="token operator">=</span> lr
+	<span class="token keyword">def</span> <span class="token function">update</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> params<span class="token punctuation">,</span> grads<span class="token punctuation">)</span><span class="token punctuation">:</span>
+		<span class="token keyword">for</span> key <span class="token keyword">in</span> params<span class="token punctuation">.</span>keys<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+			params<span class="token punctuation">[</span>key<span class="token punctuation">]</span> <span class="token operator">-=</span> self<span class="token punctuation">.</span>lr<span class="token operator">*</span>grads<span class="token punctuation">[</span>key<span class="token punctuation">]</span></code></pre><p id="348f4e8b-2a2c-4c19-81a8-1d068c4d98f2" class="">단순하고 구현도 쉽지만, 비효율적일 때가 있다. 비등방성 함수( 방향에 따라 기울기가 달라지는 함수) 에서는 탐색 경로가 비효율적이다. SGD는 무작정 기울어진 방향으로 진행하고, 기울어진 방향이 본래의 최솟값과는 다른 방향을 가르킨다. 이러한 단점을 개선시켜주는 다른 방법을 설명하겠다.</p><h2 id="1b5c316c-6cb9-4e43-8ef2-a5a682c1958a" class="">1.3 SGD의 단점</h2><p id="6acd3c44-fdf2-4477-8b2f-0cea88f7431e" class="">SGD는 단순하고 구현도 쉽지만 문제가 있다. 다음예시를 보자</p><p id="5ec0d275-0526-453f-89bc-bcd7a1c1ba24" class="">
+</p><figure id="27b0c10c-8c47-43c3-aec6-ae43c5ded615" class="image"><a href="CHAPTER%206%20%E1%84%92%E1%85%A1%E1%86%A8%E1%84%89%E1%85%B3%E1%86%B8%20%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%A7%E1%86%AB%20%E1%84%80%E1%85%B5%E1%84%89%E1%85%AE%E1%86%AF%E1%84%83%E1%85%B3%E1%86%AF%2015a2c841317642ef8e15eaf21512a504/Untitled%201.png"><img style="width:239px" src="CHAPTER%206%20%E1%84%92%E1%85%A1%E1%86%A8%E1%84%89%E1%85%B3%E1%86%B8%20%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%A7%E1%86%AB%20%E1%84%80%E1%85%B5%E1%84%89%E1%85%AE%E1%86%AF%E1%84%83%E1%85%B3%E1%86%AF%2015a2c841317642ef8e15eaf21512a504/Untitled%201.png"/></a></figure><p id="d4f2b92c-96ff-4550-9565-4c619fcc1402" class="">
+</p><p id="c36f433d-2c7a-4552-a53e-b70adbc1d1fb" class="">
+</p><figure id="e843119f-baad-4bf8-9056-9afd3d239146" class="image"><a href="CHAPTER%206%20%E1%84%92%E1%85%A1%E1%86%A8%E1%84%89%E1%85%B3%E1%86%B8%20%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%A7%E1%86%AB%20%E1%84%80%E1%85%B5%E1%84%89%E1%85%AE%E1%86%AF%E1%84%83%E1%85%B3%E1%86%AF%2015a2c841317642ef8e15eaf21512a504/Untitled%202.png"><img style="width:972px" src="CHAPTER%206%20%E1%84%92%E1%85%A1%E1%86%A8%E1%84%89%E1%85%B3%E1%86%B8%20%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%A7%E1%86%AB%20%E1%84%80%E1%85%B5%E1%84%89%E1%85%AE%E1%86%AF%E1%84%83%E1%85%B3%E1%86%AF%2015a2c841317642ef8e15eaf21512a504/Untitled%202.png"/></a></figure><p id="3488225d-1aa6-4d79-9364-eba03d7b7c61" class="">
+</p><p id="e1169eeb-c89a-4b2e-9a6b-5444ac3ae4ac" class="">기울기는 다음과 같다.</p><p id="0ae8b083-5ced-460c-9f08-ad922ee70d83" class="">
+</p><figure id="9c13e482-a55e-441e-b8c8-ea1073ed1762" class="image"><a href="CHAPTER%206%20%E1%84%92%E1%85%A1%E1%86%A8%E1%84%89%E1%85%B3%E1%86%B8%20%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%A7%E1%86%AB%20%E1%84%80%E1%85%B5%E1%84%89%E1%85%AE%E1%86%AF%E1%84%83%E1%85%B3%E1%86%AF%2015a2c841317642ef8e15eaf21512a504/Untitled%203.png"><img style="width:607px" src="CHAPTER%206%20%E1%84%92%E1%85%A1%E1%86%A8%E1%84%89%E1%85%B3%E1%86%B8%20%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%A7%E1%86%AB%20%E1%84%80%E1%85%B5%E1%84%89%E1%85%AE%E1%86%AF%E1%84%83%E1%85%B3%E1%86%AF%2015a2c841317642ef8e15eaf21512a504/Untitled%203.png"/></a></figure><p id="7470feec-9d86-4292-b6de-3f7012f90166" class="">
+</p><p id="1dc13a83-bd0b-476b-aa89-01f8c8c986be" class="">위 식이 최솟값이 되는 장소는 (x, y) = (0, 0) 인데, 기울기의 대부분은 (0, 0) 방향을 가리키고 있지 않다. 초기값(x, y) = (-7.0, 2.0)에서 SGD를 적용하면 다음 그림의 경로를 따른다.</p><p id="27d24a18-31df-4c93-82ce-8c4d1b10edd3" class="">
+</p><figure id="de3986e9-47dd-4ac4-8267-f86ead87012c" class="image"><a href="CHAPTER%206%20%E1%84%92%E1%85%A1%E1%86%A8%E1%84%89%E1%85%B3%E1%86%B8%20%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%A7%E1%86%AB%20%E1%84%80%E1%85%B5%E1%84%89%E1%85%AE%E1%86%AF%E1%84%83%E1%85%B3%E1%86%AF%2015a2c841317642ef8e15eaf21512a504/Untitled%204.png"><img style="width:637px" src="CHAPTER%206%20%E1%84%92%E1%85%A1%E1%86%A8%E1%84%89%E1%85%B3%E1%86%B8%20%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%A7%E1%86%AB%20%E1%84%80%E1%85%B5%E1%84%89%E1%85%AE%E1%86%AF%E1%84%83%E1%85%B3%E1%86%AF%2015a2c841317642ef8e15eaf21512a504/Untitled%204.png"/></a></figure><p id="b37b7231-5384-4a4b-bdeb-147633229c6c" class="">지그재그로 한참을 가게 되는데, 굉장히 비효율적임을 알 수 있다.</p><p id="986bff31-0772-4afc-9d15-19a8550468e6" class="">책에서는 이러한 단점을 해결하기 위한 방법으로 모멘텀, AdaGrad, Adam을 소개한다.</p><h2 id="03acbfa8-ab6d-4a21-909d-e4ef01061522" class="">1.4 모멘텀</h2><p id="1d212401-7b7c-41df-947f-9f8f288cda1f" class="">모멘텀은 &#x27;운동량&#x27;을 뜻하는 단어로, 물리와 관계가 있다. 수식은 다음과 같다.</p><p id="9477dde0-300e-4d87-bdfb-9e3ec8f9c7f2" class="">
+</p><figure id="d4bb0945-4469-4b23-87bd-37489febd59d" class="image"><a href="CHAPTER%206%20%E1%84%92%E1%85%A1%E1%86%A8%E1%84%89%E1%85%B3%E1%86%B8%20%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%A7%E1%86%AB%20%E1%84%80%E1%85%B5%E1%84%89%E1%85%AE%E1%86%AF%E1%84%83%E1%85%B3%E1%86%AF%2015a2c841317642ef8e15eaf21512a504/Untitled%205.png"><img style="width:250px" src="CHAPTER%206%20%E1%84%92%E1%85%A1%E1%86%A8%E1%84%89%E1%85%B3%E1%86%B8%20%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%A7%E1%86%AB%20%E1%84%80%E1%85%B5%E1%84%89%E1%85%AE%E1%86%AF%E1%84%83%E1%85%B3%E1%86%AF%2015a2c841317642ef8e15eaf21512a504/Untitled%205.png"/></a></figure><p id="f3559138-1204-44d5-803b-9a02b09bf18c" class="">새로 등장한 v 변수는 속도로, 기울기 방향으로 힘을 받아 물체가 지속된다는 물리법칙을 나타낸다.</p><ul id="4df641d9-5267-49ac-8946-101c51d907ea" class="bulleted-list"><li>av항은 물체가 아무런 힘을 받지 않을 때 서서히 하강하는 역할을 하고 a는 0.9(지면마찰, 공기저항)등의 값으로 설정합니다</li></ul><figure id="86f2b7ec-3e3d-4ff5-9e4d-f4cccbc0e461" class="image"><a href="CHAPTER%206%20%E1%84%92%E1%85%A1%E1%86%A8%E1%84%89%E1%85%B3%E1%86%B8%20%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%A7%E1%86%AB%20%E1%84%80%E1%85%B5%E1%84%89%E1%85%AE%E1%86%AF%E1%84%83%E1%85%B3%E1%86%AF%2015a2c841317642ef8e15eaf21512a504/Untitled%206.png"><img style="width:963px" src="CHAPTER%206%20%E1%84%92%E1%85%A1%E1%86%A8%E1%84%89%E1%85%B3%E1%86%B8%20%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%A7%E1%86%AB%20%E1%84%80%E1%85%B5%E1%84%89%E1%85%AE%E1%86%AF%E1%84%83%E1%85%B3%E1%86%AF%2015a2c841317642ef8e15eaf21512a504/Untitled%206.png"/></a></figure><p id="dc718846-0130-4fad-a2f0-072e9355a152" class="">
+</p><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="d2959bfd-b667-4e40-8309-07ace0a00793" class="code code-wrap"><code><span class="token keyword">class</span> <span class="token class-name">Momentum</span><span class="token punctuation">:</span>
+	<span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> lr<span class="token operator">=</span><span class="token number">0.01</span><span class="token punctuation">,</span> momentum <span class="token operator">=</span> <span class="token number">0.9</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+		self<span class="token punctuation">.</span>lr <span class="token operator">=</span> lr
+		self<span class="token punctuation">.</span>momentum <span class="token operator">=</span> momentum
+		self<span class="token punctuation">.</span>v <span class="token operator">=</span> <span class="token boolean">None</span>
+	
+	<span class="token keyword">def</span> <span class="token function">update</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> params<span class="token punctuation">,</span> grads<span class="token punctuation">)</span><span class="token punctuation">:</span>
+		<span class="token keyword">if</span> self<span class="token punctuation">.</span>v <span class="token keyword">is</span> <span class="token boolean">None</span><span class="token punctuation">:</span>
+			self<span class="token punctuation">.</span>v <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+			<span class="token keyword">for</span> key<span class="token punctuation">,</span> val <span class="token keyword">in</span> params<span class="token punctuation">.</span>items<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+				self<span class="token punctuation">.</span>v<span class="token punctuation">[</span>key<span class="token punctuation">]</span> <span class="token operator">=</span> np<span class="token punctuation">.</span>zeros_like<span class="token punctuation">(</span>val<span class="token punctuation">)</span> <span class="token comment"># val 크기의 0 행렬 생성</span>
+			
+		<span class="token keyword">for</span> key <span class="token keyword">in</span> params<span class="token punctuation">.</span>keys<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+			self<span class="token punctuation">.</span>v<span class="token punctuation">[</span>key<span class="token punctuation">]</span> <span class="token operator">=</span> self<span class="token punctuation">.</span>momentum<span class="token operator">*</span>self<span class="token punctuation">.</span>v<span class="token punctuation">[</span>key<span class="token punctuation">]</span> <span class="token operator">-</span> self<span class="token punctuation">.</span>lr<span class="token operator">*</span>grads<span class="token punctuation">[</span>key<span class="token punctuation">]</span>
+			params<span class="token punctuation">[</span>key<span class="token punctuation">]</span> <span class="token operator">+=</span> self<span class="token punctuation">.</span>v<span class="token punctuation">[</span>key<span class="token punctuation">]</span></code></pre><p id="7a4b096e-4753-4b73-ba86-bd0ffa2734f1" class="">momentum이 a에 해당한다. v는 초기화 떄는 아무값도 담지 않고, 대신 update()가 처음 호출 될 때 매개변수와 같은 구조의 데이터를 딕셔너리 변수로 저장한다.</p><p id="f613aa3a-37dc-4358-a531-2933cca71ee8" class="">
+</p><figure id="83962455-2c52-4554-966f-39b6b31fc19a" class="image"><a href="CHAPTER%206%20%E1%84%92%E1%85%A1%E1%86%A8%E1%84%89%E1%85%B3%E1%86%B8%20%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%A7%E1%86%AB%20%E1%84%80%E1%85%B5%E1%84%89%E1%85%AE%E1%86%AF%E1%84%83%E1%85%B3%E1%86%AF%2015a2c841317642ef8e15eaf21512a504/Untitled%207.png"><img style="width:499px" src="CHAPTER%206%20%E1%84%92%E1%85%A1%E1%86%A8%E1%84%89%E1%85%B3%E1%86%B8%20%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%A7%E1%86%AB%20%E1%84%80%E1%85%B5%E1%84%89%E1%85%AE%E1%86%AF%E1%84%83%E1%85%B3%E1%86%AF%2015a2c841317642ef8e15eaf21512a504/Untitled%207.png"/></a></figure><p id="3852d9fd-134f-4f81-8782-1fa336fca8e8" class=""> x축의 힘은 작지만 방향이 변하지 않아 한 방향으로 일정하게 가속하고 y축의 힘은 크지만 방향이 변해 위아래로 상충하여 방향과 속도가 일정치 않다. SGD 보다 x축 방향으로 빠르게 다가간다.</p><p id="7fedf03e-40b7-471e-bba6-572ffd1c8ed1" class="">
+</p><h2 id="50431b22-eac1-4f37-9c01-33cc6c3a5341" class="">1.5 AdaGrad</h2><p id="e636affc-cb00-4b4d-bf64-82a0fa5fad87" class="">신경망 학습에서 학습률(n)이 중요하다. 너무 크면 발산하고, 너무 작으면 학습 시간이 너무 길어지기 때문이다. 이 학습률을 정하는 기술로 <strong>학습률 감소</strong>가 있다. </p><p id="078a33e4-549b-4983-9bd4-31e9f8f12dae" class="">이는 학습을 진행 하면서 학습률을 점차 줄여가는 방법을 말하는데, 학습률을 서서히 낮추는 가장 간단한 방법은 매개변수 전체의 학습률 값을 일괄적으로 낮추는 것인데, 이를 발전시킨 것이 AdaGrad인 것이다. </p><p id="2399f2e0-92a7-4e3c-a6bc-8599f14b9884" class="">AdaGrad는 <strong>각각의 매개변수</strong>에 적응적으로 학습률을 조정 하면서 학습을 진행한다. 수식을 다음과 같다.</p><p id="a11349cd-9d63-43ed-8ee7-dbc2ec21c8db" class="">
+</p><figure id="4b3f2c3b-581c-4a1d-b562-648e1a647369" class="image"><a href="CHAPTER%206%20%E1%84%92%E1%85%A1%E1%86%A8%E1%84%89%E1%85%B3%E1%86%B8%20%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%A7%E1%86%AB%20%E1%84%80%E1%85%B5%E1%84%89%E1%85%AE%E1%86%AF%E1%84%83%E1%85%B3%E1%86%AF%2015a2c841317642ef8e15eaf21512a504/Untitled%208.png"><img style="width:430px" src="CHAPTER%206%20%E1%84%92%E1%85%A1%E1%86%A8%E1%84%89%E1%85%B3%E1%86%B8%20%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%A7%E1%86%AB%20%E1%84%80%E1%85%B5%E1%84%89%E1%85%AE%E1%86%AF%E1%84%83%E1%85%B3%E1%86%AF%2015a2c841317642ef8e15eaf21512a504/Untitled%208.png"/></a></figure><p id="c6979ce2-51f8-486d-896f-a04fa888704e" class="">h라는 새로운 변수는 기존 기울기 값을 제곱하여 계속 더해준다. 그리고 매개변수를 갱신할 때 1/sqrt(h) 를 곱해 학습률을 조정한다.</p><p id="5b604bea-9ff9-4888-add2-03bc275f7473" class=""> 즉, 매개변수의 원소중 많이 움직인 원소는 학습률이 낮아진다. 즉, 학습률 감소가 매개변수의 원소마다 다르게 적용됨을 뜻한다.</p><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="727edce3-c4d1-4683-9322-f1b25e38f094" class="code code-wrap"><code><span class="token keyword">class</span> <span class="token class-name">AdaGrad</span><span class="token punctuation">:</span>
+	<span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> lr<span class="token operator">=</span><span class="token number">0.01</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+		self<span class="token punctuation">.</span>lr <span class="token operator">=</span> lr
+		self<span class="token punctuation">.</span>h <span class="token operator">=</span> <span class="token boolean">None</span>
+	
+	<span class="token keyword">def</span> <span class="token function">update</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> params<span class="token punctuation">,</span> grads<span class="token punctuation">)</span><span class="token punctuation">:</span>
+		<span class="token keyword">if</span> self<span class="token punctuation">.</span>h <span class="token keyword">is</span> <span class="token boolean">None</span><span class="token punctuation">:</span>
+			self<span class="token punctuation">.</span>h <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+			<span class="token keyword">for</span> key<span class="token punctuation">,</span> val <span class="token keyword">in</span> params<span class="token punctuation">.</span>items<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+				self<span class="token punctuation">.</span>h<span class="token punctuation">[</span>key<span class="token punctuation">]</span> <span class="token operator">=</span> np<span class="token punctuation">.</span>zeros_list<span class="token punctuation">(</span>val<span class="token punctuation">)</span>
+		
+			<span class="token keyword">for</span> key <span class="token keyword">in</span> params<span class="token punctuation">.</span>keys<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+				self<span class="token punctuation">.</span>h<span class="token punctuation">[</span>key<span class="token punctuation">]</span> <span class="token operator">+=</span> grads<span class="token punctuation">[</span>key<span class="token punctuation">]</span><span class="token operator">*</span>grads<span class="token punctuation">[</span>keys<span class="token punctuation">]</span>
+				params<span class="token punctuation">[</span>key<span class="token punctuation">]</span> <span class="token operator">-=</span> self<span class="token punctuation">.</span>lr<span class="token operator">*</span>grads<span class="token punctuation">[</span>key<span class="token punctuation">]</span><span class="token operator">/</span><span class="token punctuation">(</span>np<span class="token punctuation">.</span>sqrt<span class="token punctuation">(</span>self<span class="token punctuation">.</span>h<span class="token punctuation">[</span>key<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token operator">+</span><span class="token number">1e</span><span class="token operator">-</span><span class="token number">7</span><span class="token punctuation">)</span><span class="token comment"># 1e-7: divide by zero 방지</span>
+</code></pre><p id="21df1f99-4abb-442b-b48e-91983f0ad97e" class="">
+</p><p id="e45b5d6a-747a-4513-afe7-f3dec77d986c" class="">
+</p><blockquote id="1b89ba57-2e90-411c-a371-c2b0e4abd637" class="">AdaGrad는 학습을 진행할수록 갱신강도가 약해져 어느순간 갱신량이 0이되어 전혀 갱신되지 않는다. 이문제를 해결하기 위해서 RMSProp이라는 방법이 있는데 이는 먼 과거의 기울기는 잊고, 새로운 기울기 정보를 반영하는 식이다. 이를 지수이동평균,EMA)이라 하여, 과거 기울기 반영규모를 기하급수적으로 감소시킨다.)</blockquote><ul id="95b25852-af9d-4c1e-9f1b-58aa886788c5" class="bulleted-list"><li> RMSProp<figure id="e9d3e27f-9cae-4a9b-9dc1-772a701db680" class="image"><a href="CHAPTER%206%20%E1%84%92%E1%85%A1%E1%86%A8%E1%84%89%E1%85%B3%E1%86%B8%20%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%A7%E1%86%AB%20%E1%84%80%E1%85%B5%E1%84%89%E1%85%AE%E1%86%AF%E1%84%83%E1%85%B3%E1%86%AF%2015a2c841317642ef8e15eaf21512a504/Untitled%209.png"><img style="width:342px" src="CHAPTER%206%20%E1%84%92%E1%85%A1%E1%86%A8%E1%84%89%E1%85%B3%E1%86%B8%20%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%A7%E1%86%AB%20%E1%84%80%E1%85%B5%E1%84%89%E1%85%AE%E1%86%AF%E1%84%83%E1%85%B3%E1%86%AF%2015a2c841317642ef8e15eaf21512a504/Untitled%209.png"/></a></figure></li></ul><p id="f17b673b-b7cf-4aff-b848-b810f47060a8" class="">RMSProp는 기울기를 단순 누적하지 않고 지수 가중 이동 평균 을 사용하여 최신 기울기들이 더 크게 반영되도록 하였다.</p><p id="bb198c84-8a13-436e-90b9-71475cd66ee8" class="">
+</p><p id="7aaa9829-a7b6-45cc-be3a-98675b7876be" class="">이전 AdaGrad의 h에 새로운 하이퍼파라미터 p를 추가하여 p가 작을수록 가장 최신의 기울기를 더 크게 반영하게된다.</p><h2 id="988bcf83-bb17-4a7f-a8e2-068796a19d46" class="">1.6 Adam</h2><p id="53070390-5325-41bc-b00c-1f84c31fd375" class="">Adam은 모멘텀과 AdaGrad를 융합한 기법이다. AdaGrad는 매개변수의 원소마다 적응적으로 갱신정도를 조정했고, 모멘텀은 속도를 가중치로 적용했다. 이 방법은 매개변수의 공간을 효율적으로 탐색해주고, 하이퍼파라미터의 <strong>편향보정</strong>이 진행된다는 점도 특징이다.</p><p id="b8b0e01f-0686-41eb-bab2-d1992129b774" class="">
+</p><p id="5adfde41-f3ee-4c5d-8cd8-a37e0ec6197d" class="">다음 사진은 지금까지 알아본 최적화 기법의 갱신 경로를 비교한 것이다.</p><p id="1645eeab-4ccb-41ea-803e-f29cf55bbe26" class="">
+</p><figure id="409b38f7-da84-401b-8efe-1e8700afa3b3" class="image"><a href="CHAPTER%206%20%E1%84%92%E1%85%A1%E1%86%A8%E1%84%89%E1%85%B3%E1%86%B8%20%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%A7%E1%86%AB%20%E1%84%80%E1%85%B5%E1%84%89%E1%85%AE%E1%86%AF%E1%84%83%E1%85%B3%E1%86%AF%2015a2c841317642ef8e15eaf21512a504/Untitled%2010.png"><img style="width:972px" src="CHAPTER%206%20%E1%84%92%E1%85%A1%E1%86%A8%E1%84%89%E1%85%B3%E1%86%B8%20%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%A7%E1%86%AB%20%E1%84%80%E1%85%B5%E1%84%89%E1%85%AE%E1%86%AF%E1%84%83%E1%85%B3%E1%86%AF%2015a2c841317642ef8e15eaf21512a504/Untitled%2010.png"/></a></figure><h2 id="13b814d7-f089-4c13-bfdd-4fe5da8b3c7d" class="">1.7 어느 갱신 방법을 이용할 것인가?</h2><p id="4b9b9728-dd0f-4341-985a-3c6709df61b5" class=""> </p><figure id="07477ffd-dcfc-408e-ba0e-a38b84897ab2" class="image"><a href="CHAPTER%206%20%E1%84%92%E1%85%A1%E1%86%A8%E1%84%89%E1%85%B3%E1%86%B8%20%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%A7%E1%86%AB%20%E1%84%80%E1%85%B5%E1%84%89%E1%85%AE%E1%86%AF%E1%84%83%E1%85%B3%E1%86%AF%2015a2c841317642ef8e15eaf21512a504/Untitled%2011.png"><img style="width:604px" src="CHAPTER%206%20%E1%84%92%E1%85%A1%E1%86%A8%E1%84%89%E1%85%B3%E1%86%B8%20%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%A7%E1%86%AB%20%E1%84%80%E1%85%B5%E1%84%89%E1%85%AE%E1%86%AF%E1%84%83%E1%85%B3%E1%86%AF%2015a2c841317642ef8e15eaf21512a504/Untitled%2011.png"/></a></figure><p id="ac76dadc-1730-4ade-bd6e-4e7723f25ee0" class="">그림만 봐서는 AdaGrad가 가장좋은것 같지만 각 방법이 각각 장단이 있어 잘 푸는 문제가 있고 아닌 문제가 있다. 책에서는 많은 사람들이 Adam을 사용한다고 한다.</p><h2 id="6a4c1864-78a8-4f0d-aded-aaa2dad98036" class="">1.8 MNIST 데이터셋으로 본 갱신 방법 비교</h2><p id="f731aa2d-c0ce-4491-bbcf-932e67d81536" class="">
+</p><figure id="251299af-6467-4aaa-b3f7-eaa69f37ae82" class="image"><a href="CHAPTER%206%20%E1%84%92%E1%85%A1%E1%86%A8%E1%84%89%E1%85%B3%E1%86%B8%20%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%A7%E1%86%AB%20%E1%84%80%E1%85%B5%E1%84%89%E1%85%AE%E1%86%AF%E1%84%83%E1%85%B3%E1%86%AF%2015a2c841317642ef8e15eaf21512a504/Untitled%2012.png"><img style="width:612px" src="CHAPTER%206%20%E1%84%92%E1%85%A1%E1%86%A8%E1%84%89%E1%85%B3%E1%86%B8%20%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%A7%E1%86%AB%20%E1%84%80%E1%85%B5%E1%84%89%E1%85%AE%E1%86%AF%E1%84%83%E1%85%B3%E1%86%AF%2015a2c841317642ef8e15eaf21512a504/Untitled%2012.png"/></a></figure><p id="7d0e7a21-b4c0-4014-bf4d-681a55189b0c" class="">위 실험에서는 각 층이 100개의 뉴런으로 구성된 5층 신경망에서 ReLU를 활성화 함수로 사용해 측정했다.</p><p id="47d55db7-b46a-42aa-b39b-12efcef362be" class="">일반적으로 SGD보다 다른 세 기법이 빠르게 학습하고, 때로는 최종 정확도 역시 높게 나타난다고 한다.</p><h1 id="95936b20-42a9-4c7d-acf6-1c59d9fe5d23" class="">2. 가중치의 초기값</h1><p id="933462cb-e577-48fc-b409-4701f17755d7" class="">신경망 학습에서 중요한 것이 가중치 초기값이다. 따라서 권장 초기값에 대해 알아보고 실험을 통해 확인해본다.</p><h2 id="05a58599-5e68-43d8-bb0e-700a3c276bfe" class="">2.1 초기값을 0으로 하면?</h2><ul id="420e6b31-8769-46ce-b5d2-c0636ce84f2c" class="bulleted-list"><li><strong>초기값을 모두 0 으로 설정한다면?</strong><ul id="01cecec8-a83e-4be8-9ba9-cbcc0a57a5ef" class="bulleted-list"><li>학습이 올바르게 이뤄지지 않음</li></ul><ul id="bb577df8-829a-41fc-8f98-f88080d2b8c9" class="bulleted-list"><li>오차역전파법에서 모든 가중치의 값이 똑같이 갱신되기 때문</li></ul><ul id="8a82c75c-6316-40e8-b0cf-1398387e4a04" class="bulleted-list"><li>역전파 과정에서 update가 동일하게 이루어지며, 반복적으로 일어남</li></ul><ul id="04c95f4f-ab8d-41be-84f6-c27761252db2" class="bulleted-list"><li>가중치를 여러 개 갖는 의미를 사라지게 함</li></ul></li></ul><p id="496b8e36-b29f-4834-b5d3-115c8b0cce90" class="">
+</p><figure id="fa3eb1e6-2e4f-4525-b950-6f9f1cfbedeb" class="image"><a href="CHAPTER%206%20%E1%84%92%E1%85%A1%E1%86%A8%E1%84%89%E1%85%B3%E1%86%B8%20%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%A7%E1%86%AB%20%E1%84%80%E1%85%B5%E1%84%89%E1%85%AE%E1%86%AF%E1%84%83%E1%85%B3%E1%86%AF%2015a2c841317642ef8e15eaf21512a504/Untitled%2013.png"><img style="width:890px" src="CHAPTER%206%20%E1%84%92%E1%85%A1%E1%86%A8%E1%84%89%E1%85%B3%E1%86%B8%20%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%A7%E1%86%AB%20%E1%84%80%E1%85%B5%E1%84%89%E1%85%AE%E1%86%AF%E1%84%83%E1%85%B3%E1%86%AF%2015a2c841317642ef8e15eaf21512a504/Untitled%2013.png"/></a></figure><ul id="9442662b-451b-4d51-9373-57ba01dda646" class="bulleted-list"><li><strong>가중치감소</strong><ul id="d422a5e7-5608-4c1d-8f8e-f7676891051c" class="bulleted-list"><li>가중치 매개변수의 값이 작아지도록 학습</li></ul><ul id="79e1596c-f4ad-46f6-b03f-7bda83226856" class="bulleted-list"><li>가중치 값을 작게 하여 오버피팅이 일어나지 않게함</li></ul><ul id="d9a8dff5-1f80-4d13-8207-b0f2e1554357" class="bulleted-list"><li>최대한 작은 값에서 시작</li></ul></li></ul><h2 id="cf9f1956-517f-4670-8605-388253ef70e3" class="">2.2 은닉층의 활성화값 분포</h2><p id="ea32d437-8b41-4163-91b6-d815c8888570" class="">이번에는 가중치의 초기값에 따라 은닉층 활성화 값들이 어떻게 변하는지 확인해보자.</p><p id="8e684246-5476-4cfc-a94c-66253da97c89" class="">스탠터드 대학의 수업을 참고, 활성화 함수로 <strong>시그모이드 함수를 사용</strong>하는 5층 신경망에 무작위로 생성한 입력데이터를 흘리며 각 층의 활성화값 분포를 히스토그램으로 그려본 실험에 의거해 설명해보면,</p><p id="98026efc-d1ae-4ad3-8907-97ccd7927bdf" class=""><strong>case 1: 정규분포/시그모이드</strong></p><p id="469e2962-8286-4cd4-a825-15b572eb2b5a" class="">
+</p><figure id="41297a59-66e2-4389-bfb6-5301f031e0d3" class="image"><a href="CHAPTER%206%20%E1%84%92%E1%85%A1%E1%86%A8%E1%84%89%E1%85%B3%E1%86%B8%20%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%A7%E1%86%AB%20%E1%84%80%E1%85%B5%E1%84%89%E1%85%AE%E1%86%AF%E1%84%83%E1%85%B3%E1%86%AF%2015a2c841317642ef8e15eaf21512a504/Untitled%2014.png"><img style="width:595px" src="CHAPTER%206%20%E1%84%92%E1%85%A1%E1%86%A8%E1%84%89%E1%85%B3%E1%86%B8%20%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%A7%E1%86%AB%20%E1%84%80%E1%85%B5%E1%84%89%E1%85%AE%E1%86%AF%E1%84%83%E1%85%B3%E1%86%AF%2015a2c841317642ef8e15eaf21512a504/Untitled%2014.png"/></a></figure><p id="72ad8e2f-1416-4a1d-a992-73aff0e23769" class="">가중치의 분포를 보면 각 층의 활성화 값들이 0과 1에 치우쳐 분포되어 있는 것을 볼 수 있다.</p><p id="3c651a64-ab66-452d-b227-8d064f4eb3bf" class="">
+</p><figure id="e8f4a295-300f-4883-beb4-3eeb411866bb" class="image"><a href="CHAPTER%206%20%E1%84%92%E1%85%A1%E1%86%A8%E1%84%89%E1%85%B3%E1%86%B8%20%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%A7%E1%86%AB%20%E1%84%80%E1%85%B5%E1%84%89%E1%85%AE%E1%86%AF%E1%84%83%E1%85%B3%E1%86%AF%2015a2c841317642ef8e15eaf21512a504/Untitled%2015.png"><img style="width:656px" src="CHAPTER%206%20%E1%84%92%E1%85%A1%E1%86%A8%E1%84%89%E1%85%B3%E1%86%B8%20%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%A7%E1%86%AB%20%E1%84%80%E1%85%B5%E1%84%89%E1%85%AE%E1%86%AF%E1%84%83%E1%85%B3%E1%86%AF%2015a2c841317642ef8e15eaf21512a504/Untitled%2015.png"/></a></figure><p id="50d26af0-13de-441a-9115-d42b88f189d5" class="">시그모이드 함수는 출력이 0 에 가까워지면 미분이 0에 다가가기 때문에, 역전파의 기울기 값이 점점 사라져 기울기 손실을 유발한다고 알려져 있다.</p><p id="9a896538-b60e-41d1-82f5-eb45e83fafeb" class="">
+</p><p id="82843b34-3c8f-413c-b107-8cebfdb3b539" class=""><strong>가중치의 표준편차를 0.01</strong>로 바꿔주면,</p><p id="044c8862-06cf-4b26-afbf-6f606bfb2f07" class=""><strong>case 2: 정규분포*0.01/시그모이드</strong></p><p id="0bafbc69-a6d0-4c3f-ba72-4b17a62ac4a4" class="">
+</p><figure id="c75df127-b6b0-4db0-bcc3-b0b1a3290d11" class="image"><a href="CHAPTER%206%20%E1%84%92%E1%85%A1%E1%86%A8%E1%84%89%E1%85%B3%E1%86%B8%20%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%A7%E1%86%AB%20%E1%84%80%E1%85%B5%E1%84%89%E1%85%AE%E1%86%AF%E1%84%83%E1%85%B3%E1%86%AF%2015a2c841317642ef8e15eaf21512a504/Untitled%2016.png"><img style="width:527px" src="CHAPTER%206%20%E1%84%92%E1%85%A1%E1%86%A8%E1%84%89%E1%85%B3%E1%86%B8%20%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%A7%E1%86%AB%20%E1%84%80%E1%85%B5%E1%84%89%E1%85%AE%E1%86%AF%E1%84%83%E1%85%B3%E1%86%AF%2015a2c841317642ef8e15eaf21512a504/Untitled%2016.png"/></a></figure><p id="90fb1c1f-6e61-4ded-bac0-b5f9c579dd4a" class="">이번에는 0.5 부근에 집중되어 있다. </p><p id="713dc4ec-c26f-4b93-819d-3c232edb67db" class="">앞서 본 그림처럼 0과 1로 치우쳐지지는 않아 기울기 소실 문제는 없으나, 활성화 값들이 치우쳐졌다는것은 다수의 뉴런이 거의 같은 값을 출력하고 있으니 뉴런을 여러개 둔 의미가 없어지게 된다는 의미다. 그래서, 이는 표현력 제한 관점에서 문제가 된다.</p><p id="61651f53-3a29-474d-b6a6-0d43fa71be6f" class="">
+</p><p id="b672bf05-2a79-4ffb-bdf4-e1e371281ccb" class="">다음으로는 sqrt(1/n)인 정규분포,<strong> Xavier 초기값</strong>을 사용한 결과다.</p><p id="bb5cc2fd-ac39-4079-b688-e52a56e88954" class="">
+</p><p id="c2a830a6-0072-4f51-bf94-83ce7ca10d73" class=""><strong>case 3:  Xavier 초기값/시그모이드</strong></p><p id="9d3edaa4-c962-4204-928a-3fce3b85e6c7" class="">
+</p><figure id="2ae2b951-9efe-48a5-b9d7-0d76b103bc7d" class="image"><a href="CHAPTER%206%20%E1%84%92%E1%85%A1%E1%86%A8%E1%84%89%E1%85%B3%E1%86%B8%20%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%A7%E1%86%AB%20%E1%84%80%E1%85%B5%E1%84%89%E1%85%AE%E1%86%AF%E1%84%83%E1%85%B3%E1%86%AF%2015a2c841317642ef8e15eaf21512a504/Untitled%2017.png"><img style="width:950px" src="CHAPTER%206%20%E1%84%92%E1%85%A1%E1%86%A8%E1%84%89%E1%85%B3%E1%86%B8%20%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%A7%E1%86%AB%20%E1%84%80%E1%85%B5%E1%84%89%E1%85%AE%E1%86%AF%E1%84%83%E1%85%B3%E1%86%AF%2015a2c841317642ef8e15eaf21512a504/Untitled%2017.png"/></a></figure><p id="c80b7de7-9af6-4f2b-92f9-072a38c070f5" class="">결과를 보면 층이 깊어질 수록 형태가 일그러지긴 하지만, 뉴런들이 확실히 넓게 분포됨을 알 수 있다. 따라서 각 층에 흐르는 데이터가 적당히 퍼져있으므로, 시그모이드 함수의 표현력도 제한받지 않고 학습이 효율적으로 이루어질것으로 예상된다.</p><p id="7c9e8cdb-65bb-4c38-b105-2187bd86e2d2" class="">
+</p><p id="8126a01b-ca1f-441e-92de-8e2da17d00b9" class="">Xavier 초기값은 일반적인 딥러닝 프레임워크들이 표준적으로 이용하고 있다.</p><p id="77f8a9c5-6bee-4068-b677-54b7c75d8747" class="">이 초기값은 각 층의 활성화값들을 광범위하게 분포시킬 목적으로 가중치의 적절한 분포를 찾았다.</p><p id="9627588d-d524-4d00-b86b-442390089c77" class="">앞 계층의 노드가 n개라면 표준편차가 1/sqrt(n) 인 분포를 사용하면 된다.</p><figure id="652bb8c8-1b64-406f-a170-a361f67d3cc1" class="image"><a href="CHAPTER%206%20%E1%84%92%E1%85%A1%E1%86%A8%E1%84%89%E1%85%B3%E1%86%B8%20%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%A7%E1%86%AB%20%E1%84%80%E1%85%B5%E1%84%89%E1%85%AE%E1%86%AF%E1%84%83%E1%85%B3%E1%86%AF%2015a2c841317642ef8e15eaf21512a504/Untitled%2018.png"><img style="width:602px" src="CHAPTER%206%20%E1%84%92%E1%85%A1%E1%86%A8%E1%84%89%E1%85%B3%E1%86%B8%20%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%A7%E1%86%AB%20%E1%84%80%E1%85%B5%E1%84%89%E1%85%AE%E1%86%AF%E1%84%83%E1%85%B3%E1%86%AF%2015a2c841317642ef8e15eaf21512a504/Untitled%2018.png"/></a></figure><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="f34b8fe8-1ed2-425d-a7d5-2bdfff35c184" class="code code-wrap"><code>node_num <span class="token operator">=</span> <span class="token number">100</span> <span class="token comment"># 앞층의 노드수</span>
+w <span class="token operator">=</span> np<span class="token punctuation">.</span>random<span class="token punctuation">.</span>randn<span class="token punctuation">(</span>node_num<span class="token punctuation">,</span> node_num<span class="token punctuation">)</span> <span class="token operator">*</span> np<span class="token punctuation">.</span>sqrt<span class="token punctuation">(</span><span class="token number">1.0</span><span class="token operator">/</span>node_num<span class="token punctuation">)</span></code></pre><h2 id="2ecd225c-e650-4a8d-bbec-7faa4a52138f" class="">2.3 ReLU를 사용할 때의 가중치 초기값</h2><p id="f5646349-f04a-4640-9f14-87730f7fcd96" class="">시그모이드 함수와 tanh 함수는 좌우대칭, 중앙부근이 선형인 함수로, Xavier 초기값이 적당하다. 반면 ReLU를 이용할때는 ReLU에 특화된 초기값을 이용해야 한다.  바로, He 초기값이라고 한다.</p><p id="cb5f8829-2246-4138-84df-9c310d70f4e1" class="">He 초기값은 앞 층의 노드가 n 개 일 때 sqrt(2/n)인 정규분포를 사용한다.</p><p id="bb56f62a-aeb1-4053-9e16-a4d72d9f0d92" class="">
+</p><figure id="2dc3a4b4-4ba6-467e-ba14-42a5c76e67b9" class="image"><a href="CHAPTER%206%20%E1%84%92%E1%85%A1%E1%86%A8%E1%84%89%E1%85%B3%E1%86%B8%20%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%A7%E1%86%AB%20%E1%84%80%E1%85%B5%E1%84%89%E1%85%AE%E1%86%AF%E1%84%83%E1%85%B3%E1%86%AF%2015a2c841317642ef8e15eaf21512a504/Untitled%2019.png"><img style="width:775px" src="CHAPTER%206%20%E1%84%92%E1%85%A1%E1%86%A8%E1%84%89%E1%85%B3%E1%86%B8%20%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%A7%E1%86%AB%20%E1%84%80%E1%85%B5%E1%84%89%E1%85%AE%E1%86%AF%E1%84%83%E1%85%B3%E1%86%AF%2015a2c841317642ef8e15eaf21512a504/Untitled%2019.png"/></a></figure><p id="e12d54eb-8cff-49ba-ba40-556429c33b62" class="">
+</p><figure id="0538fdbe-3c57-4456-bba0-c98aec2d10b9" class="image"><a href="CHAPTER%206%20%E1%84%92%E1%85%A1%E1%86%A8%E1%84%89%E1%85%B3%E1%86%B8%20%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%A7%E1%86%AB%20%E1%84%80%E1%85%B5%E1%84%89%E1%85%AE%E1%86%AF%E1%84%83%E1%85%B3%E1%86%AF%2015a2c841317642ef8e15eaf21512a504/Untitled%2020.png"><img style="width:666px" src="CHAPTER%206%20%E1%84%92%E1%85%A1%E1%86%A8%E1%84%89%E1%85%B3%E1%86%B8%20%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%A7%E1%86%AB%20%E1%84%80%E1%85%B5%E1%84%89%E1%85%AE%E1%86%AF%E1%84%83%E1%85%B3%E1%86%AF%2015a2c841317642ef8e15eaf21512a504/Untitled%2020.png"/></a></figure><p id="74ab6965-0268-4d26-bcbe-8201534a9a77" class="">표준편차가 0.01일 때는 각 층의 활성화 값들이 매우 작다. 이렇게 작은 데이터들이 흐른다는 것은 역전파때 가중치의 기울기가 작아진다는 뜻이며, 이렇게 되면 학습이 거이 이루어지지않는다.</p><p id="09a9c5aa-6b21-4437-ba40-f87f2bd235a0" class="">Xavier 초기값의 결과를 보면 치우침이 조금씩 커지며 이는 기울기 소실 문제를 일으킨다. </p><p id="a5f4c15f-6bfe-4d8c-9f61-acfcedcf11dc" class="">마지막으로 He초기값은 모든층에 균일하게 분포되어 역전파때도 적절한 값이 나올것으로 기대할 수 있다.</p><p id="3b0612c8-8d68-4714-b114-6c69cdc0e90d" class="">
+</p><blockquote id="16c09db2-25e8-4b61-a02f-5ecae5669542" class="">결론</blockquote><p id="3df56021-c319-42fd-9ef3-c9d3ecd03d40" class="">활성화 함수로 ReLU를 사용할 때는 He초기값</p><p id="45c76fc6-1879-4d33-9b97-a93d6e7fc014" class="">sigmoid나 tanh 함수 들의 S자 모양 곡선일때는 Xavier 초기값 </p><h2 id="cfc3168d-1b38-4df9-84dd-d4017e2c3122" class="">2.4 MNIST 데이터셋으로 본 가중치 초기값 비교</h2><p id="fde5aceb-ad8b-4630-afbe-e2b82ed06f7c" class="">
+</p><figure id="14f3a2e6-2b1c-4d4b-8d9c-cc09ab6d7c7f" class="image"><a href="CHAPTER%206%20%E1%84%92%E1%85%A1%E1%86%A8%E1%84%89%E1%85%B3%E1%86%B8%20%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%A7%E1%86%AB%20%E1%84%80%E1%85%B5%E1%84%89%E1%85%AE%E1%86%AF%E1%84%83%E1%85%B3%E1%86%AF%2015a2c841317642ef8e15eaf21512a504/Untitled%2021.png"><img style="width:716px" src="CHAPTER%206%20%E1%84%92%E1%85%A1%E1%86%A8%E1%84%89%E1%85%B3%E1%86%B8%20%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%A7%E1%86%AB%20%E1%84%80%E1%85%B5%E1%84%89%E1%85%AE%E1%86%AF%E1%84%83%E1%85%B3%E1%86%AF%2015a2c841317642ef8e15eaf21512a504/Untitled%2021.png"/></a></figure><p id="ce0ac4c7-bdd2-4830-8858-d49b0f89de0b" class="">층별 뉴런이 100개인 5층 신경망에서 활성화 함수로 ReLU를 사용했다.</p><h1 id="9f35979d-9b69-48d3-8a76-573de746d61a" class="">3. 배치 정규화</h1><p id="7f278708-f593-4ba5-a01f-a378ce26910e" class="">앞서 가중치의 초기값을 적절히 설정해 각 층의 활성화 값 분포가 적당히 퍼지면 학습이 원활히 된다고 했는데, 배치 정규화는 각 층이 활성화값을 적당히 퍼뜨리도록 강제하는 아이디어에서 나왔다.</p><h2 id="e3c6db52-f566-4f61-943d-d45a93df9dfe" class="">3.1 배치 정규화 알고리즘</h2><p id="be250ac7-8cfb-49f9-81b9-21f06eb9ea79" class="">배치 정규화 방법이 즐겨 사용되는 이유는 다음과 같다.</p><ul id="43f80795-e386-4f39-aca0-c0f81f016bd4" class="bulleted-list"><li>학습을 빨리 진행할 수 있다.</li></ul><ul id="20532df3-681e-439e-a4e9-d62ee69e6cda" class="bulleted-list"><li>초기값에 크게 의존하지 않는다.</li></ul><ul id="6d5af4a9-8461-4574-91cb-ecf5688ba167" class="bulleted-list"><li>오퍼피팅을 억제한다.(드롭아웃의 필요성 감소)</li></ul><p id="546dbc6f-8b2a-4143-921e-7ba18e589e8f" class="">
+</p><figure id="f677d497-664e-4fc3-a26d-3717e9303d48" class="image"><a href="CHAPTER%206%20%E1%84%92%E1%85%A1%E1%86%A8%E1%84%89%E1%85%B3%E1%86%B8%20%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%A7%E1%86%AB%20%E1%84%80%E1%85%B5%E1%84%89%E1%85%AE%E1%86%AF%E1%84%83%E1%85%B3%E1%86%AF%2015a2c841317642ef8e15eaf21512a504/Untitled%2022.png"><img style="width:960px" src="CHAPTER%206%20%E1%84%92%E1%85%A1%E1%86%A8%E1%84%89%E1%85%B3%E1%86%B8%20%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%A7%E1%86%AB%20%E1%84%80%E1%85%B5%E1%84%89%E1%85%AE%E1%86%AF%E1%84%83%E1%85%B3%E1%86%AF%2015a2c841317642ef8e15eaf21512a504/Untitled%2022.png"/></a></figure><p id="96aee933-0a27-481f-b524-a28b9444647f" class="">배치 정규화는 각 층에서의 활성화 값이 적당히 분포되도록 조정한다. </p><p id="a93e1d1d-75ee-4a12-a2b4-aad54f3c20d2" class="">우선 배치 정규화게층을 신경망에 삽입하는 것으로 시작한다. </p><p id="d1d923e6-5b9d-43f3-b0df-6cc637420d22" class="">이 층에서는 학습 시 미니배치를 단위로 데이터 분포가 정규분포(평균이 0, 분산이 1)이 되도록 정규화한다. </p><figure id="e400efa5-e9d3-4ee4-9440-7769c8d19872" class="image"><a href="CHAPTER%206%20%E1%84%92%E1%85%A1%E1%86%A8%E1%84%89%E1%85%B3%E1%86%B8%20%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%A7%E1%86%AB%20%E1%84%80%E1%85%B5%E1%84%89%E1%85%AE%E1%86%AF%E1%84%83%E1%85%B3%E1%86%AF%2015a2c841317642ef8e15eaf21512a504/Untitled%2023.png"><img style="width:305px" src="CHAPTER%206%20%E1%84%92%E1%85%A1%E1%86%A8%E1%84%89%E1%85%B3%E1%86%B8%20%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%A7%E1%86%AB%20%E1%84%80%E1%85%B5%E1%84%89%E1%85%AE%E1%86%AF%E1%84%83%E1%85%B3%E1%86%AF%2015a2c841317642ef8e15eaf21512a504/Untitled%2023.png"/></a></figure><p id="7f804e7e-b111-4700-bd53-90f7c778f6e5" class="">평균이 0 검증</p><p id="478181b0-da4f-46a4-beff-9d937b150f55" class="">
+</p><figure id="66adc16a-0f5b-468f-b820-031eaf6b3a98" class="image"><a href="CHAPTER%206%20%E1%84%92%E1%85%A1%E1%86%A8%E1%84%89%E1%85%B3%E1%86%B8%20%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%A7%E1%86%AB%20%E1%84%80%E1%85%B5%E1%84%89%E1%85%AE%E1%86%AF%E1%84%83%E1%85%B3%E1%86%AF%2015a2c841317642ef8e15eaf21512a504/Untitled%2024.png"><img style="width:1360px" src="CHAPTER%206%20%E1%84%92%E1%85%A1%E1%86%A8%E1%84%89%E1%85%B3%E1%86%B8%20%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%A7%E1%86%AB%20%E1%84%80%E1%85%B5%E1%84%89%E1%85%AE%E1%86%AF%E1%84%83%E1%85%B3%E1%86%AF%2015a2c841317642ef8e15eaf21512a504/Untitled%2024.png"/></a></figure><p id="4d3f179a-d828-4853-abc3-65480c98e49f" class="">분산이 1 검증</p><figure id="1cb913a8-5cc2-40d9-a699-25931bd4fab2" class="image"><a href="CHAPTER%206%20%E1%84%92%E1%85%A1%E1%86%A8%E1%84%89%E1%85%B3%E1%86%B8%20%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%A7%E1%86%AB%20%E1%84%80%E1%85%B5%E1%84%89%E1%85%AE%E1%86%AF%E1%84%83%E1%85%B3%E1%86%AF%2015a2c841317642ef8e15eaf21512a504/Untitled%2025.png"><img style="width:2500px" src="CHAPTER%206%20%E1%84%92%E1%85%A1%E1%86%A8%E1%84%89%E1%85%B3%E1%86%B8%20%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%A7%E1%86%AB%20%E1%84%80%E1%85%B5%E1%84%89%E1%85%AE%E1%86%AF%E1%84%83%E1%85%B3%E1%86%AF%2015a2c841317642ef8e15eaf21512a504/Untitled%2025.png"/></a></figure><p id="9a2930b8-d4d7-40ec-9189-fa2f4e1c2297" class="">ε은 아주 작은 값으로 divide by zero를 막기 위함이다.</p><p id="9adbfd53-5caa-43f4-a10c-451ec4ca0a47" class="">
+</p><p id="e638e9fd-08cb-4f89-b8b2-4850501657e7" class="">배치 정규화 계층마다 이 정규화된 데이터에 고유한 확대(scale)와 이동(shift)변환을 수행한다.</p><p id="430822eb-5f2c-4f8b-ad0d-e83702834965" class="">
+</p><figure id="b79849be-bc59-4ebc-887f-16cb112b6523" class="image"><a href="CHAPTER%206%20%E1%84%92%E1%85%A1%E1%86%A8%E1%84%89%E1%85%B3%E1%86%B8%20%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%A7%E1%86%AB%20%E1%84%80%E1%85%B5%E1%84%89%E1%85%AE%E1%86%AF%E1%84%83%E1%85%B3%E1%86%AF%2015a2c841317642ef8e15eaf21512a504/Untitled%2026.png"><img style="width:229px" src="CHAPTER%206%20%E1%84%92%E1%85%A1%E1%86%A8%E1%84%89%E1%85%B3%E1%86%B8%20%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%A7%E1%86%AB%20%E1%84%80%E1%85%B5%E1%84%89%E1%85%AE%E1%86%AF%E1%84%83%E1%85%B3%E1%86%AF%2015a2c841317642ef8e15eaf21512a504/Untitled%2026.png"/></a></figure><figure id="d155ec32-f66b-458d-b4f7-cd21cfbd14f8" class="image"><a href="CHAPTER%206%20%E1%84%92%E1%85%A1%E1%86%A8%E1%84%89%E1%85%B3%E1%86%B8%20%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%A7%E1%86%AB%20%E1%84%80%E1%85%B5%E1%84%89%E1%85%AE%E1%86%AF%E1%84%83%E1%85%B3%E1%86%AF%2015a2c841317642ef8e15eaf21512a504/Untitled%2027.png"><img style="width:966px" src="CHAPTER%206%20%E1%84%92%E1%85%A1%E1%86%A8%E1%84%89%E1%85%B3%E1%86%B8%20%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%A7%E1%86%AB%20%E1%84%80%E1%85%B5%E1%84%89%E1%85%AE%E1%86%AF%E1%84%83%E1%85%B3%E1%86%AF%2015a2c841317642ef8e15eaf21512a504/Untitled%2027.png"/></a></figure><p id="d07f2c77-9c3a-4d5f-a374-9a5e9650b83d" class="">
+</p><h2 id="b6db119c-6c13-49dc-aaf3-4dacd3c15396" class="">3.2 배치 정규화의 효과</h2><p id="ff454749-9a1b-41fa-b2c0-6b9e0edd544a" class="">
+</p><figure id="e592f1dd-b036-4567-b9fe-221dd289373c" class="image"><a href="CHAPTER%206%20%E1%84%92%E1%85%A1%E1%86%A8%E1%84%89%E1%85%B3%E1%86%B8%20%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%A7%E1%86%AB%20%E1%84%80%E1%85%B5%E1%84%89%E1%85%AE%E1%86%AF%E1%84%83%E1%85%B3%E1%86%AF%2015a2c841317642ef8e15eaf21512a504/Untitled%2028.png"><img style="width:655px" src="CHAPTER%206%20%E1%84%92%E1%85%A1%E1%86%A8%E1%84%89%E1%85%B3%E1%86%B8%20%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%A7%E1%86%AB%20%E1%84%80%E1%85%B5%E1%84%89%E1%85%AE%E1%86%AF%E1%84%83%E1%85%B3%E1%86%AF%2015a2c841317642ef8e15eaf21512a504/Untitled%2028.png"/></a></figure><p id="798e7829-f738-4ad9-9977-4a7325d795a5" class="">배치 정규화시 더 빠른 것을 알 수 있다.</p><h1 id="423ae195-5b21-4a43-871a-7c176995a705" class="">4. 바른 학습을 위해</h1><p id="89e319f9-bc11-45ec-916f-ceb2dcf909d7" class="">기계학습에서 오버피팅이 문제가 되는 일이 많다 오버피팅이란 신경망이 훈련데이터에만 지나치게 적응되어 그외의 데이터는 제대로 대응하지 못하는 상태를 말한다. 기계학습은 범용성을 지향하기 때문에 학습된 데이터 이외에 새로운 데이터가 들어 왔을 때 식별해내는 모델이 바람직하다. 따라서 오버피팅을 줄이는 것이 매우 중요하다.</p><p id="b891ec8b-b6e5-4aa8-b853-d391254a20b1" class="">
+</p><h2 id="36d13cd5-71b2-46d7-9919-584b61c629d9" class="">4.1 오버피팅</h2><p id="acb4bd37-3adf-4a2a-b3e4-3609dbfc92aa" class="">오버피팅은 주로 다음과 같은 경우에 일어난다.</p><p id="672c3013-fd8a-4394-9354-f4df7e0dbb3a" class="">
+</p><ul id="e4916900-7b68-4c53-8b56-993cae2fc108" class="bulleted-list"><li>매개변수가 많고 표현력이 높은 모델</li></ul><ul id="4b72b698-616f-4fc1-976d-9e466562fa65" class="bulleted-list"><li>훈련데이터가 적음</li></ul><p id="ea926ff2-3b08-4c92-88cf-adb6ce1d87b4" class="">
+</p><p id="152781b8-55cb-4dce-8bc3-a2bcc924dad8" class="">오버피팅을 억제하기 위해 주로 이용하는 방법</p><ul id="1c43af2e-9ac1-47fc-a8e1-ad1fc294e851" class="bulleted-list"><li>가중치 감소</li></ul><ul id="9889a995-5570-4316-b88a-4bc08949d792" class="bulleted-list"><li>드롭아웃</li></ul><p id="04c65fcf-bcde-4370-8a94-52405bd8b520" class="">
+</p><figure id="b82ff3c0-b77a-475d-96d5-cd2e5aef6d32" class="image"><a href="CHAPTER%206%20%E1%84%92%E1%85%A1%E1%86%A8%E1%84%89%E1%85%B3%E1%86%B8%20%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%A7%E1%86%AB%20%E1%84%80%E1%85%B5%E1%84%89%E1%85%AE%E1%86%AF%E1%84%83%E1%85%B3%E1%86%AF%2015a2c841317642ef8e15eaf21512a504/Untitled%2029.png"><img style="width:967px" src="CHAPTER%206%20%E1%84%92%E1%85%A1%E1%86%A8%E1%84%89%E1%85%B3%E1%86%B8%20%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%A7%E1%86%AB%20%E1%84%80%E1%85%B5%E1%84%89%E1%85%AE%E1%86%AF%E1%84%83%E1%85%B3%E1%86%AF%2015a2c841317642ef8e15eaf21512a504/Untitled%2029.png"/></a></figure><p id="4adb1ab8-8573-4252-9f2d-c83c9234e4cd" class="">각각 앞에서부터 100개, 300개, 1000개이다. 데이터수가 적을수록 훈련 데이터와 시험 데이터의 간극이 커지는 것을 확인할 수 있다.</p><h2 id="99c12222-f795-4469-9785-68ce9d6a8213" class="">4.2 가중치감소</h2><p id="c4c3f196-d94f-4a23-bcbd-d9a4f796e85f" class="">가중치 감소는, 학습과정에서 큰 가중치에 대해 그에 상응하는 큰 패널티를 부과하여 오버피팅을 억제하는 방법이다. 손실함수의 가중치에 L2 Norm(각 원소의 제곱들을 더해서 루트를 씌운 값)을 더한 가중치 감소 방법이다.</p><p id="ef09a25f-7e64-483c-8df6-54edf787e733" class=""><a href="https://mirae-kim.tistory.com/7">https://mirae-kim.tistory.com/7</a></p><h2 id="e8bc85a3-0111-4bda-a367-93758e47e944" class="">4.3 드롭아웃</h2><p id="3f8b55c6-0546-445e-9b17-b22822d1ee25" class="">
+</p><p id="3d124ad1-d368-417c-b6d6-e61e8b86d023" class="">드롭아웃은 뉴런을 임의로 삭제하면서 학습하는 방법이다. 훈련 때 은닉층을 무작위로 골라 삭제한다.(매번 다른 모델을 학습시킨다.) 시험 때는 모든 뉴런에 신호를 전달한다. 단, 시험때는 각 뉴런의 출력에 훈련 때 삭제한 비율을 곱하여 출력한다.(모델의 평균을 내는 것과 비슷한 효과)</p><h1 id="63098a47-7e4d-499d-aeb4-9a6d2fb8eda1" class="">5. 적절한 하이퍼파라미터 값 찾기</h1><p id="49fe36ce-0ee5-4dcd-8819-5310e4c9d860" class="">신경망에서 등장하는 하이퍼파라미터는 각 층의 뉴런 수, 배치크기, 매개변수 갱신 시의 학습률과 가중치 감소 등을 말한다. 이러한 하이퍼파라미터 값은 모델의 성능에 있어서 매우 중요하다. 따라서, 하이퍼 파라미터의 값을 최대한 효율적으로 탐색하는 방법을 알아보자.</p><h2 id="62e47678-2b3f-4568-9d7c-4b671ded4525" class="">5.1 검증 데이터</h2><p id="1bd98627-80cb-4f33-995f-a099ff4f0156" class="">지금까지 데이터셋을 훈련데이터와 시험데이터라는 두가지로 분리해 이용했다. 훈련데이터로 학습하고, 시험데이터로 범용 성능을 평가한다. 주의할 점은 하이퍼파라미터의 성능을 평가할 때는 시험 데이터를 사용해서는 안된다. 이유는 시험 데이터를 사용하여 하이퍼 파라미터가 조정되면 하이퍼파라미터 값이 시험데이터에 오버피팅 되기 때문이다. 따라서 하이퍼파라미터를 조정할 때에는 전용 확인 데이터가 필요하다 이런 하이퍼파라미터의 적절성을 평가하는 데이터를 검증데이터라고 부른다.</p><ul id="804c3cf5-7c2d-4d63-a4fb-ae6eed4715ea" class="bulleted-list"><li>훈련데이터: 매개변수 학습</li></ul><ul id="ff935099-6bc2-4071-a55a-fa748dda8742" class="bulleted-list"><li>검증데이터: 하이퍼파라미터 성능 평가</li></ul><ul id="311158a4-20ae-4256-a23c-69e58ca5fd9a" class="bulleted-list"><li>시험데이터: 신경망의 범용 성능 평가</li></ul><p id="499ffed1-9165-404a-afba-53bb42f3cd07" class="">데이터 셋에 따라 이렇게 세 가지로 분류해 놓은 것도 있지만, 그렇지 않고 훈련데이터와 시험데이터로만 분리되어있을 경우에는 보통 훈련데이터 중 20% 정도를 검증데이터로 먼저 분리한다.</p><h2 id="4044d4c3-3a27-47ac-8095-9b843f013743" class="">5.2 하이퍼파라미터 최적화</h2><p id="bbc2d10a-9e1c-4d7b-8acd-a18df67f0afb" class="">최적화 할 때 핵심은 &#x27; 최적 값&#x27;이 존재하는 범위를 조금씩 줄여간다는 것 이다. 그러려면, 우선 대략적인 범위를 설정하고 그 범위에서 무작위로 하이퍼파라미터 값을 골라낸후(샘플링) 그 값으로 정확도를 평가한다.</p><blockquote id="3813cf82-1d6a-44c4-bb37-f15624ef96f5" class="">하이퍼파라미터 최적화에서 범위는 대략적으로 0.001~1000 사이의 로그 스케일로 지정하고, 그리드 서치같은 규칙적인 탐색보다는 무작위로 샘플링해 탐색하는것이 좋다. 또한 하이퍼파라미터를 최적화 할 때는 딥러닝 학습시간이 오래걸리므로, 학습을 위한 EPOCH를 작게 하여 1회 평가에 걸리는 시간을 단축하는 것이 효과적이다.</blockquote><h2 id="51d429fd-60ee-490b-84b3-26da47830a82" class="">5.3 하이퍼파라미터 최적화 구현하기</h2><p id="4b3e8269-a1d6-4458-be63-60b7ad2af92d" class="">
+</p><h1 id="27acf6c7-f344-4914-8787-a5e4c473c0c4" class="">6. 정리</h1><ul id="a7a5ad8d-2804-4734-a6ab-ef6fd076aea0" class="bulleted-list"><li>매개변수 갱신 방법에는 확률적 경사 하강법(SGD) 외에도 모멘텀, AdaGrad, Adam 등이 있다.</li></ul><ul id="e0511945-7541-44d5-855c-00de4fde0722" class="bulleted-list"><li>가중치 초기값을 정하는 방법은 올바른 학습을 하는데 매우 중요하다.</li></ul><ul id="2997b96c-b8a6-4664-becc-f0647620cb26" class="bulleted-list"><li>가중치의 초기값으로는 &quot;Xavier 초기값&quot;과 &quot;He 초기값&quot;이 효과적이다.</li></ul><ul id="4a7bef1e-c41f-4f77-b03f-0a402b02b645" class="bulleted-list"><li>배치 정규화를 이용하면 학습을 빠르게 진행할 수 있으며, 초기값에 영향을 덜 받게 된다.</li></ul><ul id="c7052c21-078e-4a87-9d96-fab2253ea4d6" class="bulleted-list"><li>오버피팅을 억제하는 정규화 기술로는 가중치 감소와 드롭아웃이 있다.</li></ul><ul id="5eeac2ae-7c39-4f55-834f-81f9532fab1b" class="bulleted-list"><li>하이퍼 파라미터 값 탐색은 최적 값이 존재할 법한 범위를 점차 좁히면서 하는 것이 효과적이다.</li></ul></div></article></body></html>
