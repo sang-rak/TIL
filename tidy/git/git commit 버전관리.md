@@ -12,7 +12,13 @@ git rm --cached a.txt
 
 
 
+- git 초기화
 
+  ```
+  rm -rf .git
+  ```
+
+  
 
 - git 확인
 
@@ -55,3 +61,11 @@ git rm --cached a.txt
 - 과거로 완전히 돌아감 코드도 돌아감
 
   git reset --soft 86c4d71
+
+
+
+
+
+- 과거 코드를 가져만 오고 돌아가진 않는다.
+
+  git revert 86c4d71
