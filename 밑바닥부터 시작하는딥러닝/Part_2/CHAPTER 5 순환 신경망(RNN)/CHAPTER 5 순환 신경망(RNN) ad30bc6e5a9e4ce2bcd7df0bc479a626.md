@@ -22,23 +22,23 @@ CBOW 모델
 
     t번째 단어를 타깃으로 그 전후 단어(t-1)번쨰 단어와 (t+1)번째 단어를 맥락으로 취급
 
-    ![CHAPTER%205%20%E1%84%89%E1%85%AE%E1%86%AB%E1%84%92%E1%85%AA%E1%86%AB%20%E1%84%89%E1%85%B5%E1%86%AB%E1%84%80%E1%85%A7%E1%86%BC%E1%84%86%E1%85%A1%E1%86%BC(RNN)%20ad30bc6e5a9e4ce2bcd7df0bc479a626/Untitled.png](CHAPTER%205%20%E1%84%89%E1%85%AE%E1%86%AB%E1%84%92%E1%85%AA%E1%86%AB%20%E1%84%89%E1%85%B5%E1%86%AB%E1%84%80%E1%85%A7%E1%86%BC%E1%84%86%E1%85%A1%E1%86%BC(RNN)%20ad30bc6e5a9e4ce2bcd7df0bc479a626/Untitled.png)
+    ![Untitled](CHAPTER 5 순환 신경망(RNN) ad30bc6e5a9e4ce2bcd7df0bc479a626.assets/Untitled.png)
 
     w(t-1)과 w(t+1)이 주어졌을 때 타깃이 wt가 될 확률을 수식으로 표현하면
 
-![CHAPTER%205%20%E1%84%89%E1%85%AE%E1%86%AB%E1%84%92%E1%85%AA%E1%86%AB%20%E1%84%89%E1%85%B5%E1%86%AB%E1%84%80%E1%85%A7%E1%86%BC%E1%84%86%E1%85%A1%E1%86%BC(RNN)%20ad30bc6e5a9e4ce2bcd7df0bc479a626/Untitled%201.png](CHAPTER%205%20%E1%84%89%E1%85%AE%E1%86%AB%E1%84%92%E1%85%AA%E1%86%AB%20%E1%84%89%E1%85%B5%E1%86%AB%E1%84%80%E1%85%A7%E1%86%BC%E1%84%86%E1%85%A1%E1%86%BC(RNN)%20ad30bc6e5a9e4ce2bcd7df0bc479a626/Untitled%201.png)
+![Untitled 1](CHAPTER 5 순환 신경망(RNN) ad30bc6e5a9e4ce2bcd7df0bc479a626.assets/Untitled 1.png)
 
 - 맥락을 왼쪽 윈도우 만으로 한정
 
-![CHAPTER%205%20%E1%84%89%E1%85%AE%E1%86%AB%E1%84%92%E1%85%AA%E1%86%AB%20%E1%84%89%E1%85%B5%E1%86%AB%E1%84%80%E1%85%A7%E1%86%BC%E1%84%86%E1%85%A1%E1%86%BC(RNN)%20ad30bc6e5a9e4ce2bcd7df0bc479a626/Untitled%202.png](CHAPTER%205%20%E1%84%89%E1%85%AE%E1%86%AB%E1%84%92%E1%85%AA%E1%86%AB%20%E1%84%89%E1%85%B5%E1%86%AB%E1%84%80%E1%85%A7%E1%86%BC%E1%84%86%E1%85%A1%E1%86%BC(RNN)%20ad30bc6e5a9e4ce2bcd7df0bc479a626/Untitled%202.png)
+![Untitled 2](CHAPTER 5 순환 신경망(RNN) ad30bc6e5a9e4ce2bcd7df0bc479a626.assets/Untitled 2.png)
 
 w(t-2)과 w(t-1)이 주어졌을 때 타깃이 wt가 될 확률(CBOW 모델이 출력할 확률)을 수실으로 표현하면
 
-![CHAPTER%205%20%E1%84%89%E1%85%AE%E1%86%AB%E1%84%92%E1%85%AA%E1%86%AB%20%E1%84%89%E1%85%B5%E1%86%AB%E1%84%80%E1%85%A7%E1%86%BC%E1%84%86%E1%85%A1%E1%86%BC(RNN)%20ad30bc6e5a9e4ce2bcd7df0bc479a626/Untitled%203.png](CHAPTER%205%20%E1%84%89%E1%85%AE%E1%86%AB%E1%84%92%E1%85%AA%E1%86%AB%20%E1%84%89%E1%85%B5%E1%86%AB%E1%84%80%E1%85%A7%E1%86%BC%E1%84%86%E1%85%A1%E1%86%BC(RNN)%20ad30bc6e5a9e4ce2bcd7df0bc479a626/Untitled%203.png)
+![Untitled 3](CHAPTER 5 순환 신경망(RNN) ad30bc6e5a9e4ce2bcd7df0bc479a626.assets/Untitled 3.png)
 
 CBOW 모델이 다루는 손실함수
 
-![CHAPTER%205%20%E1%84%89%E1%85%AE%E1%86%AB%E1%84%92%E1%85%AA%E1%86%AB%20%E1%84%89%E1%85%B5%E1%86%AB%E1%84%80%E1%85%A7%E1%86%BC%E1%84%86%E1%85%A1%E1%86%BC(RNN)%20ad30bc6e5a9e4ce2bcd7df0bc479a626/Untitled%204.png](CHAPTER%205%20%E1%84%89%E1%85%AE%E1%86%AB%E1%84%92%E1%85%AA%E1%86%AB%20%E1%84%89%E1%85%B5%E1%86%AB%E1%84%80%E1%85%A7%E1%86%BC%E1%84%86%E1%85%A1%E1%86%BC(RNN)%20ad30bc6e5a9e4ce2bcd7df0bc479a626/Untitled%204.png)
+![Untitled 4](CHAPTER 5 순환 신경망(RNN) ad30bc6e5a9e4ce2bcd7df0bc479a626.assets/Untitled 4.png)
 
 ## 1.2 언어 모델
 
@@ -56,21 +56,21 @@ w1, ... , wm 순서로 출현할 확률 P(w1, ..., wm)
 
 여러 사건이 동시에 일어날 확률이므로 동시  확률이라고 한다.
 
-![CHAPTER%205%20%E1%84%89%E1%85%AE%E1%86%AB%E1%84%92%E1%85%AA%E1%86%AB%20%E1%84%89%E1%85%B5%E1%86%AB%E1%84%80%E1%85%A7%E1%86%BC%E1%84%86%E1%85%A1%E1%86%BC(RNN)%20ad30bc6e5a9e4ce2bcd7df0bc479a626/Untitled%205.png](CHAPTER%205%20%E1%84%89%E1%85%AE%E1%86%AB%E1%84%92%E1%85%AA%E1%86%AB%20%E1%84%89%E1%85%B5%E1%86%AB%E1%84%80%E1%85%A7%E1%86%BC%E1%84%86%E1%85%A1%E1%86%BC(RNN)%20ad30bc6e5a9e4ce2bcd7df0bc479a626/Untitled%205.png)
+![Untitled 5](CHAPTER 5 순환 신경망(RNN) ad30bc6e5a9e4ce2bcd7df0bc479a626.assets/Untitled 5.png)
 
 동시확률은 사후 확률의 총곱으로 나타낼 수 있다.
 
 이 사후 확률은 타깃 단어보다 왼쪽에 있는 단어를 맥락(조건)으로 했을때의 확률이라는 것에 주목해야 한다.
 
-![CHAPTER%205%20%E1%84%89%E1%85%AE%E1%86%AB%E1%84%92%E1%85%AA%E1%86%AB%20%E1%84%89%E1%85%B5%E1%86%AB%E1%84%80%E1%85%A7%E1%86%BC%E1%84%86%E1%85%A1%E1%86%BC(RNN)%20ad30bc6e5a9e4ce2bcd7df0bc479a626/Untitled%206.png](CHAPTER%205%20%E1%84%89%E1%85%AE%E1%86%AB%E1%84%92%E1%85%AA%E1%86%AB%20%E1%84%89%E1%85%B5%E1%86%AB%E1%84%80%E1%85%A7%E1%86%BC%E1%84%86%E1%85%A1%E1%86%BC(RNN)%20ad30bc6e5a9e4ce2bcd7df0bc479a626/Untitled%206.png)
+![Untitled 6](CHAPTER 5 순환 신경망(RNN) ad30bc6e5a9e4ce2bcd7df0bc479a626.assets/Untitled 6.png)
 
 확률의 곱셈정리
 
-![CHAPTER%205%20%E1%84%89%E1%85%AE%E1%86%AB%E1%84%92%E1%85%AA%E1%86%AB%20%E1%84%89%E1%85%B5%E1%86%AB%E1%84%80%E1%85%A7%E1%86%BC%E1%84%86%E1%85%A1%E1%86%BC(RNN)%20ad30bc6e5a9e4ce2bcd7df0bc479a626/Untitled%207.png](CHAPTER%205%20%E1%84%89%E1%85%AE%E1%86%AB%E1%84%92%E1%85%AA%E1%86%AB%20%E1%84%89%E1%85%B5%E1%86%AB%E1%84%80%E1%85%A7%E1%86%BC%E1%84%86%E1%85%A1%E1%86%BC(RNN)%20ad30bc6e5a9e4ce2bcd7df0bc479a626/Untitled%207.png)
+![Untitled 7](CHAPTER 5 순환 신경망(RNN) ad30bc6e5a9e4ce2bcd7df0bc479a626.assets/Untitled 7.png)
 
 A, B가 모두 일어날 확률 P(A, B)는 B가 일어날 확률 P(B)와 B가 일어난 후 A가 일어날 확률 P(A|B)를 곱한 값과 같다.
 
-![CHAPTER%205%20%E1%84%89%E1%85%AE%E1%86%AB%E1%84%92%E1%85%AA%E1%86%AB%20%E1%84%89%E1%85%B5%E1%86%AB%E1%84%80%E1%85%A7%E1%86%BC%E1%84%86%E1%85%A1%E1%86%BC(RNN)%20ad30bc6e5a9e4ce2bcd7df0bc479a626/Untitled%208.png](CHAPTER%205%20%E1%84%89%E1%85%AE%E1%86%AB%E1%84%92%E1%85%AA%E1%86%AB%20%E1%84%89%E1%85%B5%E1%86%AB%E1%84%80%E1%85%A7%E1%86%BC%E1%84%86%E1%85%A1%E1%86%BC(RNN)%20ad30bc6e5a9e4ce2bcd7df0bc479a626/Untitled%208.png)
+![Untitled 8](CHAPTER 5 순환 신경망(RNN) ad30bc6e5a9e4ce2bcd7df0bc479a626.assets/Untitled 8.png)
 
 ## 1.3 CBOW 모델을 언어 모델로?
 
@@ -92,7 +92,7 @@ A, B가 모두 일어날 확률 P(A, B)는 B가 일어날 확률 P(B)와 B가 �
 
 닫힌 경로 혹은 순환하는 경로가 존재해야 단어가 같은 장소를 반복해 왕래할 수 있고 데이터가 순환하면서 과거의 정보를 기억하는 동시에 최신 데이터로 갱신 될 수 있다.
 
-![CHAPTER%205%20%E1%84%89%E1%85%AE%E1%86%AB%E1%84%92%E1%85%AA%E1%86%AB%20%E1%84%89%E1%85%B5%E1%86%AB%E1%84%80%E1%85%A7%E1%86%BC%E1%84%86%E1%85%A1%E1%86%BC(RNN)%20ad30bc6e5a9e4ce2bcd7df0bc479a626/Untitled%209.png](CHAPTER%205%20%E1%84%89%E1%85%AE%E1%86%AB%E1%84%92%E1%85%AA%E1%86%AB%20%E1%84%89%E1%85%B5%E1%86%AB%E1%84%80%E1%85%A7%E1%86%BC%E1%84%86%E1%85%A1%E1%86%BC(RNN)%20ad30bc6e5a9e4ce2bcd7df0bc479a626/Untitled%209.png)
+![Untitled 9](CHAPTER 5 순환 신경망(RNN) ad30bc6e5a9e4ce2bcd7df0bc479a626.assets/Untitled 9.png)
 
 t: 시각
 
@@ -104,7 +104,7 @@ t: 시각
 
 ## 2.2 순환 구조 펼치기
 
-![CHAPTER%205%20%E1%84%89%E1%85%AE%E1%86%AB%E1%84%92%E1%85%AA%E1%86%AB%20%E1%84%89%E1%85%B5%E1%86%AB%E1%84%80%E1%85%A7%E1%86%BC%E1%84%86%E1%85%A1%E1%86%BC(RNN)%20ad30bc6e5a9e4ce2bcd7df0bc479a626/Untitled%2010.png](CHAPTER%205%20%E1%84%89%E1%85%AE%E1%86%AB%E1%84%92%E1%85%AA%E1%86%AB%20%E1%84%89%E1%85%B5%E1%86%AB%E1%84%80%E1%85%A7%E1%86%BC%E1%84%86%E1%85%A1%E1%86%BC(RNN)%20ad30bc6e5a9e4ce2bcd7df0bc479a626/Untitled%2010.png)
+![Untitled 10](CHAPTER 5 순환 신경망(RNN) ad30bc6e5a9e4ce2bcd7df0bc479a626.assets/Untitled 10.png)
 
 RNN계층의 순환 구조를 펼침으로써 오른쪽으로 성장하는 긴 신경망으로 변신
 
@@ -112,7 +112,7 @@ RNN계층의 순환 구조를 펼침으로써 오른쪽으로 성장하는 긴 �
 
 각 시각의 RNN계층은 그 계층으로의 입력과 1개 전의 RNN 계층으로부터의 출력을 받는데 이 두 정보를 바탕으로 현 시각의 출력을 계산한다.
 
-![CHAPTER%205%20%E1%84%89%E1%85%AE%E1%86%AB%E1%84%92%E1%85%AA%E1%86%AB%20%E1%84%89%E1%85%B5%E1%86%AB%E1%84%80%E1%85%A7%E1%86%BC%E1%84%86%E1%85%A1%E1%86%BC(RNN)%20ad30bc6e5a9e4ce2bcd7df0bc479a626/Untitled%2011.png](CHAPTER%205%20%E1%84%89%E1%85%AE%E1%86%AB%E1%84%92%E1%85%AA%E1%86%AB%20%E1%84%89%E1%85%B5%E1%86%AB%E1%84%80%E1%85%A7%E1%86%BC%E1%84%86%E1%85%A1%E1%86%BC(RNN)%20ad30bc6e5a9e4ce2bcd7df0bc479a626/Untitled%2011.png)
+![Untitled 11](CHAPTER 5 순환 신경망(RNN) ad30bc6e5a9e4ce2bcd7df0bc479a626.assets/Untitled 11.png)
 
 Wx: 입력 x를 출력 h로 변환하기 위한 가중치
 
@@ -130,7 +130,7 @@ RNN계층을 '상태를 가지는 계층' 혹은 메모리가 있는 계층 이�
 
 ## 2.3 BPTT
 
-![CHAPTER%205%20%E1%84%89%E1%85%AE%E1%86%AB%E1%84%92%E1%85%AA%E1%86%AB%20%E1%84%89%E1%85%B5%E1%86%AB%E1%84%80%E1%85%A7%E1%86%BC%E1%84%86%E1%85%A1%E1%86%BC(RNN)%20ad30bc6e5a9e4ce2bcd7df0bc479a626/Untitled%2012.png](CHAPTER%205%20%E1%84%89%E1%85%AE%E1%86%AB%E1%84%92%E1%85%AA%E1%86%AB%20%E1%84%89%E1%85%B5%E1%86%AB%E1%84%80%E1%85%A7%E1%86%BC%E1%84%86%E1%85%A1%E1%86%BC(RNN)%20ad30bc6e5a9e4ce2bcd7df0bc479a626/Untitled%2012.png)
+![Untitled 12](CHAPTER 5 순환 신경망(RNN) ad30bc6e5a9e4ce2bcd7df0bc479a626.assets/Untitled 12.png)
 
 순환 구조를 펼친후의 RNN에는 오차역전파법을 적용할 수 있다.
 
@@ -150,14 +150,15 @@ Truncated BPTT: 시간축 방향으로 너무 길어진 신경망을 적당한 �
 - 계층이 너무 길면 계산량과 메모리 사용량 등이 문제가 되고 계층이 길어짐에 따라 신경망을 하나 통과할 때마다 기울기 값이 조금씩 작아져서 이전 시각 t까지 역전파되기 전에 0이되어 소멸할 수도 있다.
 - 순전파의 연결을 그대로 유지하면서(데이터를 순서대로 입력해야 한다) 역전파의 연결은 적당한 길이로 잘라내 잘라낸 신경망 단위로 학습을 수행한다.
 - 역전파의 연결을 잘라버리면 그보다 미래의 데이터에 대해서는 생각할 필요가 없어지기 때문에 각각의 블록 단위로 미래의 블록과는 독립적으로 오차역전파법을 완결 시킨다.
-    - 블록: 역전파가 연결되는 일련의 RNN게층
-
+    
+- 블록: 역전파가 연결되는 일련의 RNN게층
+    
 - 순전파를 수행하고 그 다음 역전파를 수행하여 원하는 기울기를 구한다.
 - 다음 역전파를 수행할 때 앞 블록의 마지막 은닉 상태인 ht가 필요하다.
 
     ht로 순전파가 계속 연결 될 수 있다.
 
-![CHAPTER%205%20%E1%84%89%E1%85%AE%E1%86%AB%E1%84%92%E1%85%AA%E1%86%AB%20%E1%84%89%E1%85%B5%E1%86%AB%E1%84%80%E1%85%A7%E1%86%BC%E1%84%86%E1%85%A1%E1%86%BC(RNN)%20ad30bc6e5a9e4ce2bcd7df0bc479a626/Untitled%2013.png](CHAPTER%205%20%E1%84%89%E1%85%AE%E1%86%AB%E1%84%92%E1%85%AA%E1%86%AB%20%E1%84%89%E1%85%B5%E1%86%AB%E1%84%80%E1%85%A7%E1%86%BC%E1%84%86%E1%85%A1%E1%86%BC(RNN)%20ad30bc6e5a9e4ce2bcd7df0bc479a626/Untitled%2013.png)
+![Untitled 13](CHAPTER 5 순환 신경망(RNN) ad30bc6e5a9e4ce2bcd7df0bc479a626.assets/Untitled 13.png)
 
 ## 2.5 Truncated BPTT의 미니배치 학습
 
@@ -175,7 +176,7 @@ Truncated BPTT: 시간축 방향으로 너무 길어진 신경망을 적당한 �
 
 두 번째 미니배치 때는 500번째 데이터를 시작 위치로 정하고 그 위치부터 다시 순서대로 데이터를 제공
 
-![CHAPTER%205%20%E1%84%89%E1%85%AE%E1%86%AB%E1%84%92%E1%85%AA%E1%86%AB%20%E1%84%89%E1%85%B5%E1%86%AB%E1%84%80%E1%85%A7%E1%86%BC%E1%84%86%E1%85%A1%E1%86%BC(RNN)%20ad30bc6e5a9e4ce2bcd7df0bc479a626/Untitled%2014.png](CHAPTER%205%20%E1%84%89%E1%85%AE%E1%86%AB%E1%84%92%E1%85%AA%E1%86%AB%20%E1%84%89%E1%85%B5%E1%86%AB%E1%84%80%E1%85%A7%E1%86%BC%E1%84%86%E1%85%A1%E1%86%BC(RNN)%20ad30bc6e5a9e4ce2bcd7df0bc479a626/Untitled%2014.png)
+![Untitled 14](CHAPTER 5 순환 신경망(RNN) ad30bc6e5a9e4ce2bcd7df0bc479a626.assets/Untitled 14.png)
 
 →Truncated BPTT의 원리는 단순하지만 데이터 제공 방법 두 가지를 주의
 
@@ -183,7 +184,7 @@ Truncated BPTT: 시간축 방향으로 너무 길어진 신경망을 적당한 �
 
 # 3. RNN 구현
 
-![CHAPTER%205%20%E1%84%89%E1%85%AE%E1%86%AB%E1%84%92%E1%85%AA%E1%86%AB%20%E1%84%89%E1%85%B5%E1%86%AB%E1%84%80%E1%85%A7%E1%86%BC%E1%84%86%E1%85%A1%E1%86%BC(RNN)%20ad30bc6e5a9e4ce2bcd7df0bc479a626/Untitled%2015.png](CHAPTER%205%20%E1%84%89%E1%85%AE%E1%86%AB%E1%84%92%E1%85%AA%E1%86%AB%20%E1%84%89%E1%85%B5%E1%86%AB%E1%84%80%E1%85%A7%E1%86%BC%E1%84%86%E1%85%A1%E1%86%BC(RNN)%20ad30bc6e5a9e4ce2bcd7df0bc479a626/Untitled%2015.png)
+![Untitled 15](CHAPTER 5 순환 신경망(RNN) ad30bc6e5a9e4ce2bcd7df0bc479a626.assets/Untitled 15.png)
 
 길이가 T인 시계열 데이터를 받는다.
 
@@ -191,7 +192,7 @@ Truncated BPTT: 시간축 방향으로 너무 길어진 신경망을 적당한 �
 
 모듈화를 생각해 위의 그림의 신경망을 '하나의 계층'으로 구현한다.
 
-![CHAPTER%205%20%E1%84%89%E1%85%AE%E1%86%AB%E1%84%92%E1%85%AA%E1%86%AB%20%E1%84%89%E1%85%B5%E1%86%AB%E1%84%80%E1%85%A7%E1%86%BC%E1%84%86%E1%85%A1%E1%86%BC(RNN)%20ad30bc6e5a9e4ce2bcd7df0bc479a626/Untitled%2016.png](CHAPTER%205%20%E1%84%89%E1%85%AE%E1%86%AB%E1%84%92%E1%85%AA%E1%86%AB%20%E1%84%89%E1%85%B5%E1%86%AB%E1%84%80%E1%85%A7%E1%86%BC%E1%84%86%E1%85%A1%E1%86%BC(RNN)%20ad30bc6e5a9e4ce2bcd7df0bc479a626/Untitled%2016.png)
+![Untitled 16](CHAPTER 5 순환 신경망(RNN) ad30bc6e5a9e4ce2bcd7df0bc479a626.assets/Untitled 16.png)
 
 xs를 입력하면 hs를 출력하는 단일 계층
 
@@ -201,9 +202,9 @@ T개 단계분의 작업을 한꺼번에 처리하는 계층을 'Time RNN계층'
 
 ## 3.1 RNN 계층 구현
 
-![CHAPTER%205%20%E1%84%89%E1%85%AE%E1%86%AB%E1%84%92%E1%85%AA%E1%86%AB%20%E1%84%89%E1%85%B5%E1%86%AB%E1%84%80%E1%85%A7%E1%86%BC%E1%84%86%E1%85%A1%E1%86%BC(RNN)%20ad30bc6e5a9e4ce2bcd7df0bc479a626/Untitled%2017.png](CHAPTER%205%20%E1%84%89%E1%85%AE%E1%86%AB%E1%84%92%E1%85%AA%E1%86%AB%20%E1%84%89%E1%85%B5%E1%86%AB%E1%84%80%E1%85%A7%E1%86%BC%E1%84%86%E1%85%A1%E1%86%BC(RNN)%20ad30bc6e5a9e4ce2bcd7df0bc479a626/Untitled%2017.png)
+![Untitled 17](CHAPTER 5 순환 신경망(RNN) ad30bc6e5a9e4ce2bcd7df0bc479a626.assets/Untitled 17.png)
 
-![CHAPTER%205%20%E1%84%89%E1%85%AE%E1%86%AB%E1%84%92%E1%85%AA%E1%86%AB%20%E1%84%89%E1%85%B5%E1%86%AB%E1%84%80%E1%85%A7%E1%86%BC%E1%84%86%E1%85%A1%E1%86%BC(RNN)%20ad30bc6e5a9e4ce2bcd7df0bc479a626/Untitled%2018.png](CHAPTER%205%20%E1%84%89%E1%85%AE%E1%86%AB%E1%84%92%E1%85%AA%E1%86%AB%20%E1%84%89%E1%85%B5%E1%86%AB%E1%84%80%E1%85%A7%E1%86%BC%E1%84%86%E1%85%A1%E1%86%BC(RNN)%20ad30bc6e5a9e4ce2bcd7df0bc479a626/Untitled%2018.png)
+![Untitled 18](CHAPTER 5 순환 신경망(RNN) ad30bc6e5a9e4ce2bcd7df0bc479a626.assets/Untitled 18.png)
 
 N: 미니배치 크기 D: 입력 벡터의 차원 수 H: 은닉 상태 벡터의 차원 수
 
@@ -231,7 +232,7 @@ class RNN:
     return h_next
 ```
 
-![CHAPTER%205%20%E1%84%89%E1%85%AE%E1%86%AB%E1%84%92%E1%85%AA%E1%86%AB%20%E1%84%89%E1%85%B5%E1%86%AB%E1%84%80%E1%85%A7%E1%86%BC%E1%84%86%E1%85%A1%E1%86%BC(RNN)%20ad30bc6e5a9e4ce2bcd7df0bc479a626/Untitled%2019.png](CHAPTER%205%20%E1%84%89%E1%85%AE%E1%86%AB%E1%84%92%E1%85%AA%E1%86%AB%20%E1%84%89%E1%85%B5%E1%86%AB%E1%84%80%E1%85%A7%E1%86%BC%E1%84%86%E1%85%A1%E1%86%BC(RNN)%20ad30bc6e5a9e4ce2bcd7df0bc479a626/Untitled%2019.png)
+![Untitled 19](CHAPTER 5 순환 신경망(RNN) ad30bc6e5a9e4ce2bcd7df0bc479a626.assets/Untitled 19.png)
 
 ```python
 #RNN계층의 역전파 메서드 구현
@@ -259,7 +260,7 @@ RNN계층 T개를 연결한 신경망 Time RNN계층
 
 RNN 계층의 은닉 상태 h를 인스턴스 변수로 유지 해 은닉 상태를 '인계'받는 용도로 이용한다.
 
-![CHAPTER%205%20%E1%84%89%E1%85%AE%E1%86%AB%E1%84%92%E1%85%AA%E1%86%AB%20%E1%84%89%E1%85%B5%E1%86%AB%E1%84%80%E1%85%A7%E1%86%BC%E1%84%86%E1%85%A1%E1%86%BC(RNN)%20ad30bc6e5a9e4ce2bcd7df0bc479a626/Untitled%2020.png](CHAPTER%205%20%E1%84%89%E1%85%AE%E1%86%AB%E1%84%92%E1%85%AA%E1%86%AB%20%E1%84%89%E1%85%B5%E1%86%AB%E1%84%80%E1%85%A7%E1%86%BC%E1%84%86%E1%85%A1%E1%86%BC(RNN)%20ad30bc6e5a9e4ce2bcd7df0bc479a626/Untitled%2020.png)
+![Untitled 20](CHAPTER 5 순환 신경망(RNN) ad30bc6e5a9e4ce2bcd7df0bc479a626.assets/Untitled 20.png)
 
 RNN계층의 은닉 상태를 Time RNN계층에서 관리하면 Time RNN사용자는 RNN계층 사이에서 은닉 상태를 '인계하는 작업'을 생각하지 않아도 된다.
 
@@ -349,7 +350,7 @@ def backward(self, dhs):
 
 RNNLM(RNN Language Model): RNN을 사용한 언어 모델
 
-![CHAPTER%205%20%E1%84%89%E1%85%AE%E1%86%AB%E1%84%92%E1%85%AA%E1%86%AB%20%E1%84%89%E1%85%B5%E1%86%AB%E1%84%80%E1%85%A7%E1%86%BC%E1%84%86%E1%85%A1%E1%86%BC(RNN)%20ad30bc6e5a9e4ce2bcd7df0bc479a626/Untitled%2021.png](CHAPTER%205%20%E1%84%89%E1%85%AE%E1%86%AB%E1%84%92%E1%85%AA%E1%86%AB%20%E1%84%89%E1%85%B5%E1%86%AB%E1%84%80%E1%85%A7%E1%86%BC%E1%84%86%E1%85%A1%E1%86%BC(RNN)%20ad30bc6e5a9e4ce2bcd7df0bc479a626/Untitled%2021.png)
+![Untitled 21](CHAPTER 5 순환 신경망(RNN) ad30bc6e5a9e4ce2bcd7df0bc479a626.assets/Untitled 21.png)
 
 Embedding: 단어 ID를 단어의 분산 표현(단어 벡터)으로 변환
 
@@ -371,7 +372,7 @@ Time 계층은 간단하게 구현할 수 있다.
 
 시계열 버전의 Softmax계층을 구현할 때는 손실 오차를 구하는 Cross Entropy Error 계층도 함께 구현한다.
 
-![CHAPTER%205%20%E1%84%89%E1%85%AE%E1%86%AB%E1%84%92%E1%85%AA%E1%86%AB%20%E1%84%89%E1%85%B5%E1%86%AB%E1%84%80%E1%85%A7%E1%86%BC%E1%84%86%E1%85%A1%E1%86%BC(RNN)%20ad30bc6e5a9e4ce2bcd7df0bc479a626/Untitled%2022.png](CHAPTER%205%20%E1%84%89%E1%85%AE%E1%86%AB%E1%84%92%E1%85%AA%E1%86%AB%20%E1%84%89%E1%85%B5%E1%86%AB%E1%84%80%E1%85%A7%E1%86%BC%E1%84%86%E1%85%A1%E1%86%BC(RNN)%20ad30bc6e5a9e4ce2bcd7df0bc479a626/Untitled%2022.png)
+![Untitled 22](CHAPTER 5 순환 신경망(RNN) ad30bc6e5a9e4ce2bcd7df0bc479a626.assets/Untitled 22.png)
 
 x0, x1,... : 아래층에서부터 전해지는 점수(확률로 정규화되기 전의 값)
 
@@ -379,7 +380,7 @@ t0, t1,... : 정답 레이블
 
 T개의 Softmax with Loss 계층 각각이 손실을 산출하고 그 손실들을 합산해 평균한 값이 최종 손실이 된다.
 
-![CHAPTER%205%20%E1%84%89%E1%85%AE%E1%86%AB%E1%84%92%E1%85%AA%E1%86%AB%20%E1%84%89%E1%85%B5%E1%86%AB%E1%84%80%E1%85%A7%E1%86%BC%E1%84%86%E1%85%A1%E1%86%BC(RNN)%20ad30bc6e5a9e4ce2bcd7df0bc479a626/Untitled%2023.png](CHAPTER%205%20%E1%84%89%E1%85%AE%E1%86%AB%E1%84%92%E1%85%AA%E1%86%AB%20%E1%84%89%E1%85%B5%E1%86%AB%E1%84%80%E1%85%A7%E1%86%BC%E1%84%86%E1%85%A1%E1%86%BC(RNN)%20ad30bc6e5a9e4ce2bcd7df0bc479a626/Untitled%2023.png)
+![Untitled 23](CHAPTER 5 순환 신경망(RNN) ad30bc6e5a9e4ce2bcd7df0bc479a626.assets/Untitled 23.png)
 
 Time Softmax with Loss 계층도 시계열에 대한 평균을 구하는 것으로 데이터 1개당 평균 손실을 구해 최종 출력으로 내보낸다.
 
@@ -425,7 +426,7 @@ class SimpleRnnlm:
         self.grads += layer.grads
 ```
 
-![CHAPTER%205%20%E1%84%89%E1%85%AE%E1%86%AB%E1%84%92%E1%85%AA%E1%86%AB%20%E1%84%89%E1%85%B5%E1%86%AB%E1%84%80%E1%85%A7%E1%86%BC%E1%84%86%E1%85%A1%E1%86%BC(RNN)%20ad30bc6e5a9e4ce2bcd7df0bc479a626/Untitled%2024.png](CHAPTER%205%20%E1%84%89%E1%85%AE%E1%86%AB%E1%84%92%E1%85%AA%E1%86%AB%20%E1%84%89%E1%85%B5%E1%86%AB%E1%84%80%E1%85%A7%E1%86%BC%E1%84%86%E1%85%A1%E1%86%BC(RNN)%20ad30bc6e5a9e4ce2bcd7df0bc479a626/Untitled%2024.png)
+![Untitled 24](CHAPTER 5 순환 신경망(RNN) ad30bc6e5a9e4ce2bcd7df0bc479a626.assets/Untitled 24.png)
 
 ```python
 def forward(self, xs, ts):
@@ -460,7 +461,7 @@ def reset_state(self):
 
 입력 데이터가 여러 개일 때
 
-![CHAPTER%205%20%E1%84%89%E1%85%AE%E1%86%AB%E1%84%92%E1%85%AA%E1%86%AB%20%E1%84%89%E1%85%B5%E1%86%AB%E1%84%80%E1%85%A7%E1%86%BC%E1%84%86%E1%85%A1%E1%86%BC(RNN)%20ad30bc6e5a9e4ce2bcd7df0bc479a626/Untitled%2025.png](CHAPTER%205%20%E1%84%89%E1%85%AE%E1%86%AB%E1%84%92%E1%85%AA%E1%86%AB%20%E1%84%89%E1%85%B5%E1%86%AB%E1%84%80%E1%85%A7%E1%86%BC%E1%84%86%E1%85%A1%E1%86%BC(RNN)%20ad30bc6e5a9e4ce2bcd7df0bc479a626/Untitled%2025.png)
+![Untitled 25](CHAPTER 5 순환 신경망(RNN) ad30bc6e5a9e4ce2bcd7df0bc479a626.assets/Untitled 25.png)
 
 N:데이터의 총개수
 
