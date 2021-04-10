@@ -136,3 +136,64 @@ res = requests.get('https://dhlottery.co.kr/common.do?method=getLottoNumber&drwN
 
 import requests
 
+
+
+- admin 아이디 지정
+
+```git
+python manage.py createsuperuser
+```
+
+
+
+
+
+- CREATE
+
+1. 인스턴스를 생성하여 데이터를 일일이 넣은 후 저장해주는 방법
+
+   article = Article()
+
+   article .title = ''
+
+   article.content = ''
+
+   **article.save()**
+
+   
+
+2. 인스턴스를 생성하면서 값도 같이 넣은 후 저장해주는 방법
+
+   article = Ariticle(title='', content='')
+
+   **article.save()**
+
+
+
+3. 한줄로 작성하는 방법 모델명.objects.create(필드 = 데이터, ....)
+
+   - 리턴 있다. 방금 저장된 인스턴스가 리턴 된다
+
+   Article.objects.create(title='', content='')
+
+   
+
+- READ
+
+1. all() : 전체 정보를 가지고 오는 방법
+2. get() : pk일때만 사용
+3. filter(): 특정 정보만 가져오는 방법
+   - field lookups
+
+
+
+- Update
+  - 기존의 있는 값을 가져와서
+  - 수정 후
+  - 다시 save()
+- Delete
+  - 삭제하려는 인스턴스 값을 가져와서
+  - delete()
+
+
+
