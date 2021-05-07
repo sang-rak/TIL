@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .completed {
+      text-decoration: line-through;
+      color: gray;
+    }
+  </style>
+</head>
+<body>
+  <div id='app'>
+    <!-- 상단 입력부분 -->
+    <div>
+      <select v-model="status">
+        <option value="all">전체</option>
+        <option value="inProgress">진행중</option>
+        <option value="completed">완료</option>
+      </select>
+      <input type="text" @keydown.enter="addTodo" v-model="inputValue">
+
+      <button @click="addTodo">+</button>
+    </div>
+    
+    <!-- 리스트 표현 부분 -->
+    <ul>
+      <li v-for='todo in todoListByStatus' :key="todo.timestamp">
+        <input type="checkbox" v-model="todo.completed">
+        <span :class="{ completed: todo.completed }">{{ todo.title }}</span>
+      </li>
+    </ul>
+
+    <!-- 마지막 버튼 부분 -->
+    <button @click="deleteCompleted">완료된 할 일 지우기</button>
+
+  </div>
+  
+  <!-- Vue CDN 추가 -->
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    const STORAGE_KEY = 'vue-todo-app'
+    const todoStorage = {
+      get: function () {
+        return JSON.parse(localStorage.getItem(STORAGE_KEY)) || []
+      },
+
+      set: function (data) {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(data))
+      }
+    }
+
+    const app = new Vue({
+      el: '#app',
+      data: {
+        todos: [ // 할일 저장 (리스트로)
+          // { title: 'Todo 1', completed: false , timestamp: 1},
+          // { title: 'Todo 2', completed: true , timestamp: 2},
+          // { title: 'Todo 3', completed: false , timestamp: 3},
+          // { title: 'Todo 4', completed: false , timestamp: 4},
+        ],
+        inputValue: '',
+        status: 'all',
+      },
+      methods: {
+        addTodo: function () {
+          // console.log('addTodo 실행.')
+          const tempTodo = {
+            title: this.inputValue,
+            completed: false,
+            timestamp: new Date().getTime()
+          }
+
+          this.todos.push(tempTodo)
+          this.inputValue = ''
+          },
+
+          deleteCompleted: function () {
+            this.todos = this.todos.filter(todo => !todo.completed)
+          }
+        },
+      computed: {
+          todoListByStatus: function() {
+            const filterList = this.todos.filter((todo) => {
+              if (this.status === 'inProgress') {
+                return !todo.completed
+              } else if (this.status === 'completed') {
+                return todo.completed
+              } else {
+                return true
+              }
+            })
+            return filterList
+          },
+        },
+        watch: {
+          todos: function (newVal) {
+            todoStorage.set(newVal)
+          }
+        }
+      
+    })
+  </script>
+</body>
+</html>
