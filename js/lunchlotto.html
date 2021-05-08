@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+  
+    <h2>점심메뉴</h2>
+    <button @click="getMenu">Pick One</button>
+    <p>{{ menu }}</p>
+    <hr>
+    <h2>로또</h2>
+    <button @click='getLottoNums'>Get Lucky Numbers</button>
+    <p v-if="lotto.length">{{ lotto }}</p>
+    
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        menus: [
+          '떡볶이', '치킨', '피자',
+          '라면', '보쌈', '냉면', 
+          '초밥','회','고기'
+        ],
+        menu: '',
+        lotto: [],
+
+      },
+      methods: {
+        getMenu: function() {
+          // menus 에서 1개를 선택해야됨.
+          this.menu = _.sample(this.menus)
+        },
+        getLottoNums: function() {
+          const numbers = _.range(1, 46)
+          // console.log(numbers)
+          this.lotto = _.sampleSize(numbers, 6)
+        }
+      }
+
+    })
+  </script>
+</body>
+</html>
