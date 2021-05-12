@@ -34,3 +34,20 @@ npm i --save lodash
 
 requirement txt 같은 package.json에있는 내용을 받기위해 npm i 실행
 
+
+
+# axios 추가
+
+- git
+
+  npm i axios
+
+- import 
+
+   import axios from 'axios'
+
+
+
+# vuex add
+
+vue add vuex
