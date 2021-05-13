@@ -1,6 +1,6 @@
 'use strict';
 
-// On this codelab, you will be streaming only video (video: true).
+// 미디어를 얻기위해 video, audio 결정
 const mediaStreamConstraints = {
   video: true,
 };
@@ -11,7 +11,7 @@ const localVideo = document.querySelector('video');
 // Local stream that will be reproduced on the video.
 let localStream;
 
-// Handles success by adding the MediaStream to the video element.
+// 성공하면 srcObject속성을 통헤 MediaStream 반환
 function gotLocalMediaStream(mediaStream) {
   localStream = mediaStream;
   localVideo.srcObject = mediaStream;
@@ -22,6 +22,6 @@ function handleLocalMediaStreamError(error) {
   console.log('navigator.getUserMedia error: ', error);
 }
 
-// Initializes media stream.
+// getUserMedia 호출 후 브라우저는 사용자에게 카메라 엑세스 권한 요청 
 navigator.mediaDevices.getUserMedia(mediaStreamConstraints)
   .then(gotLocalMediaStream).catch(handleLocalMediaStreamError);
