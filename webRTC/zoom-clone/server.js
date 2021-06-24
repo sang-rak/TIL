@@ -1,29 +1,53 @@
-const express = require('express')
-const app = express()
-const server = require('http').Server(app)
-const io = require('socket.io')(server)
-const { v4: uuidV4 } = require('uuid')
+// import express, ejs, uuid
+const express = require('express');
+const app = express();
+const { v4: uuidV4 } = require('uuid');
 
-app.set('view engine', 'ejs')
-app.use(express.static('public'))
+// set up https, via letsencrypt
+const fs = require('fs');
+const https = require('https');
+const server = https.createServer(
+  {
+    key: fs.readFileSync('/etc/letsencrypt/live/localhost/privkey.pem'),
+    cert: fs.readFileSync('/etc/letsencrypt/live/localhost/cert.pem'),
+    ca: fs.readFileSync('/etc/letsencrypt/live/localhost/chain.pem'),
+    requestCert: false,
+    rejectUnauthorized: false,
+  },
+  app
+);
 
+// import socket io
+const io = require('socket.io')(server);
+
+app.set('view engine', 'ejs');
+app.use(express.static('public'));
+
+// redirect to random room url
 app.get('/', (req, res) => {
-  res.redirect(`/${uuidV4()}`)
-})
+  res.redirect(`/${uuidV4()}`);
+});
 
+// roomId from url
 app.get('/:room', (req, res) => {
-  res.render('room', { roomId: req.params.room })
-})
+  res.render('room', { roomId: req.params.room });
+});
 
-io.on('connection', socket => {
+io.on('connection', (socket) => {
+  // when user join-room
   socket.on('join-room', (roomId, userId) => {
-    socket.join(roomId)
-    socket.to(roomId).broadcast.emit('user-connected', userId)
+    // add user to room
+    socket.join(roomId);
+    // broadcast to other users in same room : user-connected
+    socket.to(roomId).broadcast.emit('user-connected', userId);
 
+    // on disconnect
     socket.on('disconnect', () => {
-      socket.to(roomId).broadcast.emit('user-disconnected', userId)
-    })
-  })
-})
+      // broadcast to other user ins same room : user-disconnected
+      socket.to(roomId).broadcast.emit('user-disconnected', userId);
+    });
+  });
+});
 
-server.listen(3000)
+// set port number
+server.listen(3000);
